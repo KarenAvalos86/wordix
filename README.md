@@ -11,5 +11,5 @@ Universidad Nacional del Comahue
 # Integrantes del grupo 3
 
 - **Karen Romina Avalos** - Legajo FAI-4875 - mail: avaloskaren86@gmail.com - Github: KarenAvalos86
-
+- **Matias Alberto Dirie** - Legajo FAI-5002 - mail: matias.dirie@est.fi.uncoma.edu.ar - Github: matiasDirie
 
