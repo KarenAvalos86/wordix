@@ -27,7 +27,9 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ *El modulo solicita un numero entero entre dos valores dados como parametros
+ *@param int $min, $max
+ *@return int 
  */
 function solicitarNumeroEntre($min, $max)
 {
