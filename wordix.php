@@ -122,7 +122,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * Da la bienvenida al jugador
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -135,7 +136,9 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Determina la cantidad de caracteres de una palabra y si cada letra es válida
+ * @param string $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
