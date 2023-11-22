@@ -99,6 +99,21 @@ function leerPalabra5Letras()
     return $nroElegido;
  }
 
+ /** Inciso 7
+ * @param array $coleccionPalabras
+ * @param string $nuevaPalabra5
+ * @return array
+ */
+function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5){
+    // int $cantPalabras
+    $nuevaPalabra5 = leerPalabra5Letras($nuevaPalabra5);
+    $cantPalabras = count($coleccionPalabras);
+    $coleccionPalabras[$cantPalabras + 1] = $nuevaPalabra5;
+    return ($coleccionPalabras);
+
+}
+
+
 /** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
  * @param array $Partidas
  * @param string $nombreJugador
