@@ -91,6 +91,68 @@ function PrimerGanada($partidas, $nombreJugador){
     }
     return $indicePartida;
 }     
+
+/** Inciso 9
+ * @param array $coleccionPartidas
+ * @param string $nombreJugador
+ * @return array
+ */
+function resumenJugador($coleccionPartidas, $nombreJugador) {
+    $resumenJugador = array(
+        'jugador' => $nombreJugador,
+        'partidas' => 0,
+        'puntaje' => 0,
+        'victorias' => 0,
+        'intento1' => 0,
+        'intento2' => 0,
+        'intento3' => 0,
+        'intento4' => 0,
+        'intento5' => 0,
+        'intento6' => 0
+    );
+
+    foreach ($coleccionPartidas as $partida) {
+        if ($partida['jugador'] === $nombreJugador) {
+            $resumenJugador['partidas']++;
+            $resumenJugador['puntaje'] += $partida['puntaje'];
+
+            if ($partida['puntaje'] > 0) {
+                $resumenJugador['victorias']++;
+            }
+
+            for ($i = 1; $i <= 6; $i++) {
+                $resumenJugador["intento$i"] += $partida["intentos"];
+            }
+        }
+    }
+
+    return $resumenJugador;
+}
+
+$partidas = cargarPartidas();
+$resumen = resumenJugador($partidas, 'Karen');
+
+// deberia de imprimir el resumen del jugador 'Karen'
+print_r($resumen);
+
+
+
+/** inciso 10
+ * @return string
+ */
+function solicitarJugador() {
+    do {
+        echo "Ingrese el nombre del jugador (debe comenzar con una letra): ";
+        $nombreJugador = strtolower(trim(fgets(STDIN)));
+    } while (!ctype_alpha($nombreJugador[0])); 
+
+    return $nombreJugador;
+}
+
+$nombreJugador = solicitarJugador();
+echo "El nombre del jugador ingresado es: " . $nombreJugador;
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
