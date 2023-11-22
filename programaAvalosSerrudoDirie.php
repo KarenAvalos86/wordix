@@ -152,7 +152,22 @@ function solicitarJugador() {
 $nombreJugador = solicitarJugador();
 echo "El nombre del jugador ingresado es: " . $nombreJugador;
 
+/** Inciso 11
+ * @param array $coleccionPartidas
+ */
+function mostrarPartidasOrdenadas($coleccionPartidas) {
+    uasort($coleccionPartidas, function ($a, $b) {
+        if ($a['jugador'] !== $b['jugador']) {
+            return $a['jugador'] < $b['jugador'] ? -1 : 1;
+        }
 
+        return $a['palabraWordix'] < $b['palabraWordix'] ? -1 : 1;
+    });
+
+
+    echo "Colección de partidas ordenada por nombre del jugador y palabra:\n";
+    print_r($coleccionPartidas);
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
