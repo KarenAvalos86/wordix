@@ -70,6 +70,24 @@ function cargarColeccionPalabras()
         return ($menuOpciones);
     }
 
+/** 4)
+ *  Solicita y verifica que se ingresen palabras de 5 letras y las retorna en mayúscula
+ * @return string
+ */
+function leerPalabra5Letras()
+{
+    //string $palabra
+    echo "Ingrese una palabra de 5 letras: ";
+    $palabra = trim(fgets(STDIN));
+    $palabra  = strtoupper($palabra);
+
+    while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
+        echo "Debe ingresar una palabra de 5 letras:";
+        $palabra = strtoupper(trim(fgets(STDIN)));
+    }
+    return $palabra;
+}
+
 /** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
  * @param array $Partidas
  * @param string $nombreJugador
