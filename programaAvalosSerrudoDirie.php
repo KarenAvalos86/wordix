@@ -69,7 +69,28 @@ function cargarColeccionPalabras()
         $menuOpciones= solicitarNumeroEntre(1,8);
         return ($menuOpciones);
     }
-    
+
+/** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
+ * @param array $Partidas
+ * @param string $nombreJugador
+ * @return int
+ * int $indicePartida
+ */
+function PrimerGanada($partidas, $nombreJugador){
+    $i=0;
+    $cantIndices= count($partidas);
+   
+    while($i<$cantIndices && (!($partidas[$i]["jugador"]==$nombreJugador) && !($partidas[$i]["puntaje"]>0))){
+       
+        $i++;
+    }
+    if ($i=$cantIndices){
+        $indicePartida= -1;
+    }else{
+        $indicePartida= $i;
+    }
+    return $indicePartida;
+}     
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
