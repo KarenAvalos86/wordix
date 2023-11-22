@@ -88,6 +88,17 @@ function leerPalabra5Letras()
     return $palabra;
 }
 
+/** 5)
+ * 
+ * @return int
+ * int $nroElegido
+ */
+ 
+ function pedirNumeroValido(){ 
+    $nroElegido= solicitarNumeroEntre(0,9);
+    return $nroElegido;
+ }
+
 /** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
  * @param array $Partidas
  * @param string $nombreJugador
