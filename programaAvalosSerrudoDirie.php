@@ -99,6 +99,21 @@ function leerPalabra5Letras()
     return $nroElegido;
  }
 
+/** 6) Dado un nro de partida, da los datos de la partida
+ * @param array $partidas
+ * 
+ */
+function MostrarPartida($partidas){
+    echo "Ingrese el número de partida";
+    $nroPartida= solicitarNumeroEntre(0,9);
+    echo "Partida WORDIX".$nroPartida. ": palabras: ".$partidas[$nroPartida]["palabraWordix"]. "\n";
+    echo "Jugador: ".$partidas[$nroPartida]["jugador"]. "\n";
+    echo "Puntaje: ".$partidas[$nroPartida]["puntaje"]. "\n";
+    echo "Intento: ".$partidas[$nroPartida]["intento"]. "\n";
+}
+
+
+
  /** Inciso 7
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra5
