@@ -32,10 +32,44 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/* ****COMPLETAR***** */
+/** Función cargarPartidas, inicializa una estructura de datos con ejemplos de partidas y retorna el arreglo
+ * @return array
+ * array $partidas
+ */
 
+    function cargarPartidas(){
+        $partidas=[];
+        $partidas[0]= ["palabraWordix"=>"YUYOS","jugador"=> "Anto", "intentos"=> 3,"puntaje"=>15];
+        $partidas[1]= ["palabraWordix"=>"HUEVO","jugador"=> "Karen", "intentos"=> 4,"puntaje"=>11];
+        $partidas[2]= ["palabraWordix"=>"TINTO","jugador"=> "Pepito","intentos"=>3,"puntaje"=>15];
+        $partidas[3]= ["palabraWordix"=>"NAVES","jugador"=> "Mati","intentos"=>5,"puntaje"=>13];
+        $partidas[4]= ["palabraWordix"=>"PALTA","jugador"=> "Karen","intentos"=>2,"puntaje"=>15];
+        $partidas[5]= ["palabraWordix"=>"GATOS","jugador"=> "Devi","intentos"=>2,"puntaje"=>15];
+        $partidas[6]= ["palabraWordix"=>"YUYOS","jugador"=> "Luana","intentos"=>1,"puntaje"=>17];
+        $partidas[7]= ["palabraWordix"=>"PISOS","jugador"=> "Karen","intentos"=>0,"puntaje"=>0];
+        $partidas[8]= ["palabraWordix"=>"LIMON","jugador"=> "Anto","intentos"=>5,"puntaje"=>12];
+        $partidas[9]= ["palabraWordix"=>"HUECO","jugador"=> "Mati","intentos"=>6,"puntaje"=>8];
+        return $partidas;
+    }
 
-
+/** Función SeleccionarOpcion visualiza el menú de opciones y retorna la opción seleccionada, si esta es válida 
+ * @return int
+ * int $menuOpciones
+ */
+    function SeleccionarOpcion(){
+        echo "1) Jugar al wordix con una palabra elegida. \n";
+        echo "2) Jugar al wordix con una palabra aleatoria. \n";
+        echo "3) Mostrar una partida \n";
+        echo "4) Mostrar la primer partida ganadora \n";
+        echo "5) Mostrar resumen de Jugador \n";
+        echo "6) Mostrar listado de partidas ordenadas por jugador y por palabra \n";
+        echo "7) Agregar una palabra de 5 letras a Wordix \n";
+        echo "8) Salir \n";
+        echo "Seleccione una opción del menú:";
+        $menuOpciones= solicitarNumeroEntre(1,8);
+        return ($menuOpciones);
+    }
+    
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
