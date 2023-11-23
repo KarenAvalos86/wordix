@@ -217,6 +217,7 @@ echo "El nombre del jugador ingresado es: " . $nombreJugador;
  * int $orden
  */
 function cmp($a,$b){
+    $orden= 0;
     if ($a['jugador']==$b["jugador"]){
         if ($a['palabraWordix']==$b['palabraWordix']){
             $orden= 0;
@@ -226,6 +227,7 @@ function cmp($a,$b){
     }else{
         $orden= 1;
     }
+    return $orden;
 }
 
 /** Inciso 11 ordena las partidas según jugador y palabra
