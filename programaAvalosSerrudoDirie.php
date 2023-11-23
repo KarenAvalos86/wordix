@@ -211,22 +211,31 @@ function solicitarJugador() {
 $nombreJugador = solicitarJugador();
 echo "El nombre del jugador ingresado es: " . $nombreJugador;
 
-/** Inciso 11
- * @param array $coleccionPartidas
+/** funcion comparación
+ * @param string $a, $b
+ * @return int
+ * int $orden
  */
-function mostrarPartidasOrdenadas($coleccionPartidas) {
-    uasort($coleccionPartidas, function ($a, $b) {
-        if ($a['jugador'] !== $b['jugador']) {
-            return $a['jugador'] < $b['jugador'] ? -1 : 1;
+function cmp($a,$b){
+    if ($a['jugador']==$b["jugador"]){
+        if ($a['palabraWordix']==$b['palabraWordix']){
+            $orden= 0;
         }
-
-        return $a['palabraWordix'] < $b['palabraWordix'] ? -1 : 1;
-    });
-
-
-    echo "Colección de partidas ordenada por nombre del jugador y palabra:\n";
-    print_r($coleccionPartidas);
+    }elseif ($a['jugador']<$b['jugador']){
+        $orden= -1;
+    }else{
+        $orden= 1;
+    }
 }
+
+/** Inciso 11 ordena las partidas según jugador y palabra
+ * @param array $partidas
+ */
+function mostrarPartidasOrdenadas($partidas) {
+    uasort($partidas,'cmp');
+    print_r($partidas);
+}
+       
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -239,8 +248,8 @@ function mostrarPartidasOrdenadas($coleccionPartidas) {
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
-//print_r($partida);
+$partida = jugarWordix("MELOM", strtolower("Majo"));
+print_r($partida);
 //imprimirResultado($partida);
 
 
