@@ -114,7 +114,7 @@ function MostrarPartida($partidas){
 
 
 
- /** Inciso 7
+ /** 7) Función que dada la colección de palabras y una palabra, se asegura de que sea de 5 letras para luego agregarla a la colección. Retorna la colección con la nueva palabra en ella.
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra5
  * @return array
