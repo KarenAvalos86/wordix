@@ -88,7 +88,7 @@ function leerPalabra5Letras()
     return $palabra;
 }
 
-/** 5)
+/** 5) Función que solicita al usuario, las veces necesarias, un número entre un rango de valores. Retornando un número válido, es decir, que esté entre tal rango. 
  * 
  * @return int
  * int $nroElegido
