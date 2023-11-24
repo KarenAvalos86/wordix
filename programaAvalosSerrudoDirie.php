@@ -74,27 +74,19 @@ function cargarColeccionPalabras()
  *  Solicita y verifica que se ingresen palabras de 5 letras y las retorna en mayúscula
  * @return string
  */
-function leerPalabra5Letras()
-{
-    //string $palabra
-    echo "Ingrese una palabra de 5 letras: ";
-    $palabra = trim(fgets(STDIN));
-    $palabra  = strtoupper($palabra);
-
-    while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
-        echo "Debe ingresar una palabra de 5 letras:";
-        $palabra = strtoupper(trim(fgets(STDIN)));
-    }
-    return $palabra;
+function pedirPalabra5Letras(){
+    //string $palabraPedida
+    $palabraPedida = leerPalabra5Letras();
+    return $palabraPedida;
 }
 
 /** 5) Función que solicita al usuario, las veces necesarias, un número entre un rango de valores. Retornando un número válido, es decir, que esté entre tal rango. 
  * 
  * @return int
- * int $nroElegido
  */
  
  function pedirNumeroValido(){ 
+    // int $numeroElegido
     $nroElegido= solicitarNumeroEntre(0,9);
     return $nroElegido;
  }
