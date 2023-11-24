@@ -188,7 +188,7 @@ print_r($resumen);
 
 
 
-/** inciso 10
+/** Función que solicita el nombre del jugador y lo retorna en minúsculas, asegurándose siempre de que tal nombre comience con una letra.
  * @return string
  */
 function solicitarJugador() {
