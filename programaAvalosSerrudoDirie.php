@@ -122,7 +122,7 @@ function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5){
 
 
 /** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
- * @param array $Partidas
+ * @param array $partidas
  * @param string $nombreJugador
  * @return int
  * int $indicePartida
@@ -143,12 +143,12 @@ function PrimerGanada($partidas, $nombreJugador){
     return $indicePartida;
 }     
 
-/** Inciso 9
- * @param array $coleccionPartidas
+/** Función que, tomando una colección de partidas y el nombre de un jugador, retorna el resumen de dicho jugador.
+ * @param array $partidas
  * @param string $nombreJugador
  * @return array
  */
-function resumenJugador($coleccionPartidas, $nombreJugador) {
+function resumenJugador($partidas, $nombreJugador) {
     $resumenJugador = array(
         'jugador' => $nombreJugador,
         'partidas' => 0,
@@ -162,7 +162,7 @@ function resumenJugador($coleccionPartidas, $nombreJugador) {
         'intento6' => 0
     );
 
-    foreach ($coleccionPartidas as $partida) {
+    foreach ($partidas as $partida) {
         if ($partida['jugador'] === $nombreJugador) {
             $resumenJugador['partidas']++;
             $resumenJugador['puntaje'] += $partida['puntaje'];
