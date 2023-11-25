@@ -57,7 +57,7 @@ function cargarColeccionPalabras()
  * int $menuOpciones
  */
     function SeleccionarOpcion(){
-        echo "1) Jugar al wordix con una palabra elegida. \n";
+        echo "\n1) Jugar al wordix con una palabra elegida. \n";
         echo "2) Jugar al wordix con una palabra aleatoria. \n";
         echo "3) Mostrar una partida \n";
         echo "4) Mostrar la primer partida ganadora \n";
@@ -96,12 +96,12 @@ function pedirPalabra5Letras(){
  * 
  */
 function MostrarPartida($partidas){
-    echo "Ingrese el número de partida";
+    echo "Ingrese el número de partida: ";
     $nroPartida= solicitarNumeroEntre(0,9);
-    echo "Partida WORDIX".$nroPartida. ": palabras: ".$partidas[$nroPartida]["palabraWordix"]. "\n";
+    echo "Partida WORDIX".$nroPartida. ": \nPalabras: ".$partidas[$nroPartida]["palabraWordix"]. "\n";
     echo "Jugador: ".$partidas[$nroPartida]["jugador"]. "\n";
     echo "Puntaje: ".$partidas[$nroPartida]["puntaje"]. "\n";
-    echo "Intento: ".$partidas[$nroPartida]["intento"]. "\n";
+    print_r("Intento: ".$partidas[$nroPartida]["intentos"]. "\n");
 }
 
 
@@ -237,14 +237,10 @@ function mostrarPartidasOrdenadas($partidas) {
 
 
 //Inicialización de variables:
-
+$estructurasPalabras = cargarColeccionPalabras();
+$estructuraPartidas = cargarPartidas();
 
 //Proceso:
-
-$partida = jugarWordix("MELOM", strtolower("Majo"));
-print_r($partida);
-//imprimirResultado($partida);
-
 
 /* */
 do {
@@ -255,7 +251,7 @@ do {
         case 1: 
               $jugadorSolicitado= solicitarJugador();
 		      $palabras= count($estructurasPalabras);
-		      echo "Ingrese un nro entre 0 y ".$palabras;
+		      echo "Ingrese un nro entre 0 y ".$palabras, ":";
 		      $nroP= trim(fgets(STDIN));
 		      $palabrasJugadas=[];
 		      $encontrado = false;
@@ -275,7 +271,7 @@ do {
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
             $jugadorSolicitado= solicitarJugador();
             $palabras= count($estructurasPalabras);
-            $nroP= random_int(0, count($coleccionPalabras));
+            $nroP= random_int(0, count($estructurasPalabras));
             $palabrasJugadas=[];
             $encontrado = false;
             $i=0;
