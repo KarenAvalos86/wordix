@@ -248,18 +248,47 @@ print_r($partida);
 
 
 
-/*
+/* */
 do {
-    $opcion = ...;
+    $opcion = SeleccionarOpcion();
 
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+              $jugadorSolicitado= solicitarJugador();
+		      $palabras= count($estructurasPalabras);
+		      echo "Ingrese un nro entre 0 y ".$palabras;
+		      $nroP= trim(fgets(STDIN));
+		      $palabrasJugadas=[];
+		      $encontrado = false;
+		      $i=0;
+		      $cantPalabrasJugadas= count($palabrasJugadas);
+		      while ($i<$cantPalabrasJugadas){
+			    if (($palabrasJugadas[$i])==$nroP){
+				    $encontrado= true;
+				break;
+			    }
+			    echo "Ingrese un nro entre 0 y ".$palabra ."que no incluya".$nroP;
+			    $i++;
+		        } 
 
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            $jugadorSolicitado= solicitarJugador();
+            $palabras= count($estructurasPalabras);
+            $nroP= random_int(0, count($coleccionPalabras));
+            $palabrasJugadas=[];
+            $encontrado = false;
+            $i=0;
+            $cantPalabrasJugadas= count($palabrasJugadas);
+            while ($i<$cantPalabrasJugadas){
+              if (($palabrasJugadas[$i])==$nroP){
+                  $encontrado= true;
+              break;
+              }
+              $i++;
+              } 
 
             break;
         case 3: 
@@ -270,4 +299,3 @@ do {
             //...
     }
 } while ($opcion != X);
-*/
