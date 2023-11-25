@@ -106,20 +106,26 @@ function MostrarPartida($partidas){
 
 
 
- /** 7) Función que dada la colección de palabras y una palabra, se asegura de que sea de 5 letras para luego agregarla a la colección. Retorna la colección con la nueva palabra en ella.
+ /** 7) Función que dada la colección de palabras y una palabra, retorna la colección con la nueva palabra en ella.
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra5
  * @return array
  */
 function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5){
-    // int $cantPalabras
-    $nuevaPalabra5 = leerPalabra5Letras($nuevaPalabra5);
+    // int $cantPalabras $i boolean $palabraEnArreglo
     $cantPalabras = count($coleccionPalabras);
+    $palabraEnArreglo = false;
+    $i = 0;
+    while ($i < $cantPalabras){
+    if (($coleccionPalabras[$i]) == $nuevaPalabra5){
+    $palabraEnArreglo = true;
+    $nuevaPalabra5 = leerPalabra5Letras();
+    } else {
     $coleccionPalabras[$cantPalabras + 1] = $nuevaPalabra5;
     return ($coleccionPalabras);
-
 }
-
+}
+}
 
 /** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
  * @param array $partidas
@@ -330,9 +336,7 @@ do {
         
         case 7:
         
-            $partidasOrdenadas= mostrarPartidasOrdenadas($partidas);
-            print_r ($partidasOrdenadas);
-           
         
+            //...
     }
 } while ($opcion != 8);
