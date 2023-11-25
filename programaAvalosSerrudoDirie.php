@@ -199,8 +199,6 @@ function solicitarJugador() {
     return $nombreJugador;
 }
 
-$nombreJugador = solicitarJugador();
-echo "El nombre del jugador ingresado es: " . $nombreJugador;
 
 /** funcion comparación
  * @param string $a, $b
@@ -266,12 +264,16 @@ do {
 			    $i++;
 		        } 
 
+            $partida = jugarWordix($estructurasPalabras[$nroP], $jugadorSolicitado);
+            print_r($partida);
+
+
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
             $jugadorSolicitado= solicitarJugador();
             $palabras= count($estructurasPalabras);
-            $nroP= random_int(0, count($estructurasPalabras));
+            $palabraAleatoria = rand(0, count($estructurasPalabras) - 1);
+            $nroP= $estructurasPalabras[$palabraAleatoria];
             $palabrasJugadas=[];
             $encontrado = false;
             $i=0;
@@ -281,8 +283,12 @@ do {
                   $encontrado= true;
               break;
               }
+              echo "Ingrese un nro entre 0 y ".$palabra ."que no incluya".$nroP;
               $i++;
               } 
+
+          $partida = jugarWordix($estructurasPalabras[$nroP], $jugadorSolicitado);
+          print_r($partida);
 
             break;
         case 3: 
