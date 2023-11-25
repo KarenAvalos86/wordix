@@ -180,11 +180,7 @@ function resumenJugador($partidas, $nombreJugador) {
     return $resumenJugador;
 }
 
-$partidas = cargarPartidas();
-$resumen = resumenJugador($partidas, 'Karen');
 
-// deberia de imprimir el resumen del jugador 'Karen'
-print_r($resumen);
 
 
 
@@ -309,7 +305,30 @@ do {
             }
 
             break;
+        case 5:
+            echo "Ingrese el nombre del jugador que desea obtener su resumen: \n";
+            $nombreJugador = trim(fgets(STDIN));
+            $partidas = cargarPartidas();
+
+            $resumen = resumenJugador($partidas, $nombreJugador);
+
+            echo "*********************";
+            print_r($resumen['jugador']);
+            print_r($resumen['partidas']);
+            print_r($resumen['puntaje']);
+            print_r($resumen['victorias']);
+            echo "Porcentaje victorias", ($resumen['victorias']/$resumen['partidas']*100);
+            echo "adivinadas";
+            print_r($resumen['intento1']);
+            print_r($resumen['intento2']);
+            print_r($resumen['intento3']);
+            print_r($resumen['intento4']);
+            print_r($resumen['intento5']);
+            print_r($resumen['intento6']);
+            echo "*********************";
+            break;
         
+        case 6:
             //...
     }
 } while ($opcion != X);
