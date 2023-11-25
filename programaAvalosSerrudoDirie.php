@@ -331,13 +331,11 @@ do {
             break;
         
         case 6:
-        
-        
-        
-        case 7:
-        
             $partidasOrdenadas= mostrarPartidasOrdenadas($partidas);
             print_r ($partidasOrdenadas);
+        
+        break;
+        case 7:
             //...
     }
 } while ($opcion != 8);
