@@ -292,7 +292,8 @@ do {
 
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            $cantidadPartidas = count($estructuraPartidas);
+            $visualizarPartida = MostrarPartida($estructuraPartidas);
 
             break;
         
