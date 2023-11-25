@@ -143,7 +143,7 @@ function PrimerGanada($partidas, $nombreJugador){
     return $indicePartida;
 }     
 
-/** Función que, tomando una colección de partidas y el nombre de un jugador, retorna el resumen de dicho jugador.
+/** 9) Función que, tomando una colección de partidas y el nombre de un jugador, retorna el resumen de dicho jugador.
  * @param array $partidas
  * @param string $nombreJugador
  * @return array
@@ -181,10 +181,7 @@ function resumenJugador($partidas, $nombreJugador) {
 }
 
 
-
-
-
-/** Función que solicita el nombre del jugador y lo retorna en minúsculas, asegurándose siempre de que tal nombre comience con una letra.
+/** 10 Función que solicita el nombre del jugador y lo retorna en minúsculas, asegurándose siempre de que tal nombre comience con una letra.
  * @return string
  */
 function solicitarJugador() {
@@ -241,7 +238,6 @@ function mostrarPartidasOrdenadas($partidas) {
 $partida = jugarWordix("MELOM", strtolower("Majo"));
 print_r($partida);
 //imprimirResultado($partida);
-
 
 
 /* */
@@ -329,6 +325,12 @@ do {
             break;
         
         case 6:
+        
+        
+        
+        case 7:
+        
+        
             //...
     }
-} while ($opcion != X);
+} while ($opcion != 8);
