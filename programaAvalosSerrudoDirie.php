@@ -296,6 +296,19 @@ do {
             $visualizarPartida = MostrarPartida($estructuraPartidas);
 
             break;
+        case 4:
+            $jugadorSolicitado = solicitarJugador();
+            $indicePartidaGanada = PrimerGanada($estructuraPartidas, $jugadorSolicitado);
+            if ($indicePartidaGanada == -1){
+                echo "El jugador " .$jugadorSolicitado. " no ganó ninguna partida.";
+            } else {
+                echo "Partida WORDIX ".$indicePartidaGanada. ": palabra: ".$estructuraPartidas[$indicePartidaGanada]["palabraWordix"]. "\n";
+                echo "Jugador: ".$estructuraPartidas[$indicePartidaGanada]["jugador"]. "\n";
+                echo "Puntaje: ".$estructuraPartidas[$indicePartidaGanada]["puntaje"]. "\n";
+                echo "Adivinó la palabra en ".$estructuraPartidas[$indicePartidaGanada]["intento"]. " intentos \n";
+            }
+
+            break;
         
             //...
     }
