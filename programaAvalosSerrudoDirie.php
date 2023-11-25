@@ -336,6 +336,10 @@ do {
         
         break;
         case 7:
+            $palabraAgregada = leerPalabra5Letras();
+            $estructuraMod = coleccionPalabrasModificada($estructurasPalabras, $palabraAgregada);
+
+        break;
             //...
     }
 } while ($opcion != 8);
