@@ -330,7 +330,9 @@ do {
         
         case 7:
         
+            $partidasOrdenadas= mostrarPartidasOrdenadas($partidas);
+            print_r ($partidasOrdenadas);
+           
         
-            //...
     }
 } while ($opcion != 8);
