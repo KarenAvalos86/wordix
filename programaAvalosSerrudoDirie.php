@@ -46,7 +46,7 @@ function cargarColeccionPalabras()
         $partidas[4]= ["palabraWordix"=>"PALTA","jugador"=> "Karen","intentos"=>2,"puntaje"=>15];
         $partidas[5]= ["palabraWordix"=>"GATOS","jugador"=> "devi","intentos"=>2,"puntaje"=>15];
         $partidas[6]= ["palabraWordix"=>"YUYOS","jugador"=> "Luana","intentos"=>1,"puntaje"=>17];
-        $partidas[7]= ["palabraWordix"=>"PISOS","jugador"=> "Karen","intentos"=>0,"puntaje"=>0];
+        $partidas[7]= ["palabraWordix"=>"PISOS","jugador"=> "Karen","intentos"=>6,"puntaje"=>0];
         $partidas[8]= ["palabraWordix"=>"LIMON","jugador"=> "Anto","intentos"=>5,"puntaje"=>12];
         $partidas[9]= ["palabraWordix"=>"HUECO","jugador"=> "Mati","intentos"=>6,"puntaje"=>8];
         return $partidas;
@@ -98,10 +98,17 @@ function pedirPalabra5Letras(){
 function MostrarPartida($partidas){
     echo "Ingrese el número de partida: ";
     $nroPartida= solicitarNumeroEntre(0,9);
-    echo "Partida WORDIX: ".$nroPartida. ": \n Palabra: ".$partidas[$nroPartida]["palabraWordix"]. "\n";
+    echo "********************************** \n";
+    echo "Partida WORDIX ".$nroPartida. ": Palabra ".$partidas[$nroPartida]["palabraWordix"]. "\n";
     echo "Jugador: ".$partidas[$nroPartida]["jugador"]. "\n";
     echo "Puntaje: ".$partidas[$nroPartida]["puntaje"]. "\n";
-    print_r("Intento: ".$partidas[$nroPartida]["intentos"]. "\n");
+    if ($partidas[$nroPartida]["puntaje"]==0){
+        echo "Intento: No adivinó la palabra. \n";
+    }
+    if ($partidas[$nroPartida]["puntaje"]>0){
+        print_r("Intento: ".$partidas[$nroPartida]["intentos"]. "\n");
+    }    
+    echo "**********************************\n";
 }
 
 
