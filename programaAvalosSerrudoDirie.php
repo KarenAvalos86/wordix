@@ -349,25 +349,45 @@ do {
                     
             break;
         case 5:
-            echo "Ingrese el nombre del jugador que desea obtener su resumen: \n";
-            $nombreJugador = solicitarJugador();
-
-            $resumen = resumenJugador( $nombreJugador);
-
-            echo "*********************";
-            print_r($resumen['jugador']);
-            print_r($resumen['partidas']);
-            print_r($resumen['puntaje']);
-            print_r($resumen['victorias']);
-            echo "Porcentaje victorias", ($resumen['victorias']/$resumen['partidas']*100);
-            echo "adivinadas";
-            print_r($resumen['intento1']);
-            print_r($resumen['intento2']);
-            print_r($resumen['intento3']);
-            print_r($resumen['intento4']);
-            print_r($resumen['intento5']);
-            print_r($resumen['intento6']);
-            echo "*********************";
+           
+            $nombreJugadorEstadisticas = solicitarJugador();
+        
+            // Inicializar las variables para las estadísticas del jugador
+            $partidasJugador = 0;
+            $puntajeTotal = 0;
+            $victorias = 0;
+            $intentosTotales = [0, 0, 0, 0, 0, 0]; // Intentos por cada posible intento (de 1 a 6)
+        
+            // Calcular las estadísticas del jugador
+            foreach ($estructuraPartidas as $partida) {
+                if ($partida['jugador'] === $nombreJugadorEstadisticas) {
+                    $partidasJugador++;
+                    $puntajeTotal += $partida['puntaje'];
+        
+                    if ($partida['puntaje'] > 0) {
+                        $victorias++;
+                    }
+        
+                    // Contar los intentos
+                    $intentos = $partida['intentos'];
+                    $intentosTotales[$intentos]++;
+                }
+            }
+        
+            echo "*********************\n";
+            echo "Jugador: " . $nombreJugadorEstadisticas . "\n";
+            echo "Partidas jugadas: " . $partidasJugador . "\n";
+            echo "Puntaje total: " . $puntajeTotal . "\n";
+            echo "Partidas ganadas: " . $victorias . "\n";
+            echo "Porcentaje de victorias: " . ($victorias / $partidasJugador * 100) . "%\n";
+        
+            // Mostrar intentos
+            for ($i = 1; $i <= 6; $i++) {
+                echo "Intentos " . $i . ": " . $intentosTotales[$i] . "\n";
+            }
+        
+            echo "*********************\n";
+        
             break;
         
         case 6:
