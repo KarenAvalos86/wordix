@@ -346,14 +346,19 @@ function obtenerPuntajeWordix($arregloDeIntentosWordix)
         $puntaje = 7 - $intentosRealizados;
     }
 
-    // Obtener la palabra adivinada
-    $palabraAdivinada = "";
+    // Encontrar el intento ganador
+    $ultimaAdivinada = [];
     foreach ($arregloDeIntentosWordix as $intentos) {
-        foreach ($intentos as $letra) {
-            if ($letra['estado'] == ESTADO_LETRA_ENCONTRADA) {
-                $palabraAdivinada .= $letra['letra'];
-            }
+        $ultimaAdivinada = $intentos;
+    }
+
+    // Obtener la palabra adivinada del último intento
+    $palabraAdivinada = '';
+    foreach ($ultimaAdivinada as $letra) {
+        if ($letra['estado'] == ESTADO_LETRA_ENCONTRADA) {
+            $palabraAdivinada .= $letra['letra'];
         }
+        
     }
 
     // Calcular el puntaje de las letras
