@@ -338,11 +338,14 @@ do {
                             }
                         }
                     
-                        if (!$partidaEncontrada) {
-                            echo "El jugador " . $nombreJugadorBusqueda . " no ganó ninguna partida.\n";
+                        if ($partidaEncontrada && ($partida['jugador'] == $nombreJugadorBusqueda && $partida['puntaje'] == 0)){
+                            echo "El jugador " .$nombreJugadorBusqueda. " no ganó ninguna partida. \n";
+                            }
+                        if (!$partidaEncontrada){
+                            echo "El jugador " .$nombreJugadorBusqueda. " no existe. \n";
                         }
                     
-                        break;
+            break;
         case 5:
             echo "Ingrese el nombre del jugador que desea obtener su resumen: \n";
             $nombreJugador = trim(fgets(STDIN));
