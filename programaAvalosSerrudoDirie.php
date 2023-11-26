@@ -323,7 +323,7 @@ do {
             break;
         case 4:
             echo "Ingrese el nombre del jugador para buscar la primera partida ganadora: ";
-                        $nombreJugadorBusqueda = trim(fgets(STDIN));
+                        $nombreJugadorBusqueda = solicitarJugador();
                         $partidaEncontrada = false;
                     
                         // Buscar la primera partida ganadora del jugador
