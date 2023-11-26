@@ -316,7 +316,7 @@ do {
                 echo "Partida WORDIX ".$indicePartidaGanada. ": palabra: ".$estructuraPartidas[$indicePartidaGanada]["palabraWordix"]. "\n";
                 echo "Jugador: ".$estructuraPartidas[$indicePartidaGanada]["jugador"]. "\n";
                 echo "Puntaje: ".$estructuraPartidas[$indicePartidaGanada]["puntaje"]. "\n";
-                echo "Adivinó la palabra en ".$estructuraPartidas[$indicePartidaGanada]["intento"]. " intentos \n";
+                echo "Adivinó la palabra en ".$estructuraPartidas[$indicePartidaGanada]["intentos"]. " intentos \n";
             }
 
             break;
