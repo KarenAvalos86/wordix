@@ -39,16 +39,16 @@ function cargarColeccionPalabras()
 
     function cargarPartidas(){
         $partidas=[];
-        $partidas[0]= ["palabraWordix"=>"YUYOS","jugador"=> "Anto", "intentos"=> 3,"puntaje"=>15];
-        $partidas[1]= ["palabraWordix"=>"HUEVO","jugador"=> "Karen", "intentos"=> 4,"puntaje"=>11];
-        $partidas[2]= ["palabraWordix"=>"TINTO","jugador"=> "Pepito","intentos"=>3,"puntaje"=>15];
-        $partidas[3]= ["palabraWordix"=>"NAVES","jugador"=> "Mati","intentos"=>5,"puntaje"=>13];
-        $partidas[4]= ["palabraWordix"=>"PALTA","jugador"=> "Karen","intentos"=>2,"puntaje"=>15];
+        $partidas[0]= ["palabraWordix"=>"YUYOS","jugador"=> "anto", "intentos"=> 3,"puntaje"=>15];
+        $partidas[1]= ["palabraWordix"=>"HUEVO","jugador"=> "karen", "intentos"=> 4,"puntaje"=>11];
+        $partidas[2]= ["palabraWordix"=>"TINTO","jugador"=> "pepito","intentos"=>3,"puntaje"=>15];
+        $partidas[3]= ["palabraWordix"=>"NAVES","jugador"=> "mati","intentos"=>5,"puntaje"=>13];
+        $partidas[4]= ["palabraWordix"=>"PALTA","jugador"=> "karen","intentos"=>2,"puntaje"=>15];
         $partidas[5]= ["palabraWordix"=>"GATOS","jugador"=> "devi","intentos"=>2,"puntaje"=>15];
-        $partidas[6]= ["palabraWordix"=>"YUYOS","jugador"=> "Luana","intentos"=>1,"puntaje"=>17];
-        $partidas[7]= ["palabraWordix"=>"PISOS","jugador"=> "Karen","intentos"=>6,"puntaje"=>0];
-        $partidas[8]= ["palabraWordix"=>"LIMON","jugador"=> "Anto","intentos"=>5,"puntaje"=>12];
-        $partidas[9]= ["palabraWordix"=>"HUECO","jugador"=> "Mati","intentos"=>6,"puntaje"=>8];
+        $partidas[6]= ["palabraWordix"=>"YUYOS","jugador"=> "luana","intentos"=>1,"puntaje"=>17];
+        $partidas[7]= ["palabraWordix"=>"PISOS","jugador"=> "karen","intentos"=>6,"puntaje"=>0];
+        $partidas[8]= ["palabraWordix"=>"LIMON","jugador"=> "anto","intentos"=>5,"puntaje"=>12];
+        $partidas[9]= ["palabraWordix"=>"HUECO","jugador"=> "mati","intentos"=>6,"puntaje"=>8];
         return $partidas;
     }
 
@@ -322,17 +322,19 @@ do {
 
             break;
         case 4:
-            echo "Ingrese el nombre del jugador para buscar la primera partida ganadora: ";
+            
                         $nombreJugadorBusqueda = solicitarJugador();
                         $partidaEncontrada = false;
                     
                         // Buscar la primera partida ganadora del jugador
                         foreach ($estructuraPartidas as $partida) {
                             if ($partida['jugador'] === $nombreJugadorBusqueda && $partida['puntaje'] > 0) {
+                                echo "**********************************\n";
                                 echo "Partida WORDIX: palabra " . $partida['palabraWordix'] . "\n";
                                 echo "Jugador: " . $partida['jugador'] . "\n";
                                 echo "Puntaje: " . $partida['puntaje'] . " puntos\n";
                                 echo "Adivinó la palabra en " . $partida['intentos'] . " intentos\n";
+                                echo "**********************************\n";
                                 $partidaEncontrada = true;
                                 break;
                             }
