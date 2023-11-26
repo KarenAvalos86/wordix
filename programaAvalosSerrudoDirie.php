@@ -106,7 +106,7 @@ function MostrarPartida($partidas){
         echo "Intento: No adivinó la palabra. \n";
     }
     if ($partidas[$nroPartida]["puntaje"]>0){
-        print_r("Intento: ".$partidas[$nroPartida]["intentos"]. "\n");
+        print_r("Intento: Adivinó la palabra en ".$partidas[$nroPartida]["intentos"]. "\n");
     }    
     echo "**********************************\n";
 }
@@ -322,18 +322,27 @@ do {
 
             break;
         case 4:
-            $jugadorSolicitado = solicitarJugador();
-            $indicePartidaGanada = PrimerGanada($estructuraPartidas, $jugadorSolicitado);
-            if ($indicePartidaGanada == -1){
-                echo "El jugador " .$jugadorSolicitado. " no ganó ninguna partida.";
-            } else {
-                echo "Partida WORDIX ".$indicePartidaGanada. ": palabra: ".$estructuraPartidas[$indicePartidaGanada]["palabraWordix"]. "\n";
-                echo "Jugador: ".$estructuraPartidas[$indicePartidaGanada]["jugador"]. "\n";
-                echo "Puntaje: ".$estructuraPartidas[$indicePartidaGanada]["puntaje"]. "\n";
-                echo "Adivinó la palabra en ".$estructuraPartidas[$indicePartidaGanada]["intentos"]. " intentos \n";
-            }
-
-            break;
+            echo "Ingrese el nombre del jugador para buscar la primera partida ganadora: ";
+                        $nombreJugadorBusqueda = trim(fgets(STDIN));
+                        $partidaEncontrada = false;
+                    
+                        // Buscar la primera partida ganadora del jugador
+                        foreach ($estructuraPartidas as $partida) {
+                            if ($partida['jugador'] === $nombreJugadorBusqueda && $partida['puntaje'] > 0) {
+                                echo "Partida WORDIX: palabra " . $partida['palabraWordix'] . "\n";
+                                echo "Jugador: " . $partida['jugador'] . "\n";
+                                echo "Puntaje: " . $partida['puntaje'] . " puntos\n";
+                                echo "Adivinó la palabra en " . $partida['intentos'] . " intentos\n";
+                                $partidaEncontrada = true;
+                                break;
+                            }
+                        }
+                    
+                        if (!$partidaEncontrada) {
+                            echo "El jugador " . $nombreJugadorBusqueda . " no ganó ninguna partida.\n";
+                        }
+                    
+                        break;
         case 5:
             echo "Ingrese el nombre del jugador que desea obtener su resumen: \n";
             $nombreJugador = trim(fgets(STDIN));
