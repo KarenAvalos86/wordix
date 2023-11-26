@@ -210,7 +210,7 @@ function solicitarJugador() {
 
 
 /** funcion comparación
- * @param string $a, $b
+ * @param array $a, $b
  * @return int
  * int $orden
  */
@@ -374,12 +374,12 @@ do {
                     $intentos = $partida['intentos'];
                     $intentosTotales[$intentos]++;
         
-                echo "*********************\n";
-                echo "Jugador: " . $nombreJugadorEstadisticas . "\n";
-                echo "Partidas jugadas: " . $partidasJugador . "\n";
-                echo "Puntaje total: " . $puntajeTotal . "\n";
-                echo "Partidas ganadas: " . $victorias . "\n";
-                echo "Porcentaje de victorias: " . ($victorias / $partidasJugador * 100) . "%\n";
+                    echo "*********************\n";
+                    echo "Jugador: " . $nombreJugadorEstadisticas . "\n";
+                    echo "Partidas jugadas: " . $partidasJugador . "\n";
+                    echo "Puntaje total: " . $puntajeTotal . "\n";
+                    echo "Partidas ganadas: " . $victorias . "\n";
+                    echo "Porcentaje de victorias: " . ($victorias / $partidasJugador * 100) . "%\n";
         
                 // Mostrar intentos
                 for ($i = 1; $i <= 6; $i++) {
@@ -395,7 +395,7 @@ do {
             break;
         
         case 6:
-            $partidasOrdenadas= mostrarPartidasOrdenadas($partidas);
+            $partidasOrdenadas= mostrarPartidasOrdenadas($estructuraPartidas);
             print_r ($partidasOrdenadas);
         
         break;
