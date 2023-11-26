@@ -272,25 +272,34 @@ do {
 
             break;
         case 2: 
-            $jugadorSolicitado= solicitarJugador();
-            $palabras= count($estructurasPalabras);
-            $palabraAleatoria = rand(0, count($estructurasPalabras) - 1);
-            $nroP= $estructurasPalabras[$palabraAleatoria];
+            $jugadorSolicitado = solicitarJugador();
+            $palabras = count($estructurasPalabras);
             $palabrasJugadas=[];
-            $encontrado = false;
-            $i=0;
-            $cantPalabrasJugadas= count($palabrasJugadas);
-            while ($i<$cantPalabrasJugadas){
-              if (($palabrasJugadas[$i])==$nroP){
-                  $encontrado= true;
-              break;
-              }
-              echo "Ingrese un nro entre 0 y ".$palabra ."que no incluya".$nroP;
-              $i++;
-              } 
-
-          $partida = jugarWordix($estructurasPalabras[$nroP], $jugadorSolicitado);
-          print_r($partida);
+        
+            // Obtener una palabra aleatoria que no haya sido jugada por el jugador
+            do {
+                $palabraAleatoria = rand(0, $palabras - 1);
+        
+                // Verificar si la palabra aleatoria ya ha sido jugada
+                $encontrado = false;
+                foreach ($palabrasJugadas as $palabraJugada) {
+                    if ($palabraJugada == $palabraAleatoria) {
+                        $encontrado = true;
+                        break;
+                    }
+                }
+            } while ($encontrado);
+                    
+            $palabrasJugadas[] = $palabraAleatoria;
+                    
+            $partida = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
+                    
+            $estructuraPartidas[] = [
+                "palabraWordix" => $estructurasPalabras[$palabraAleatoria],
+                "jugador" => $jugadorSolicitado,
+                "intentos" => $partida['intentos'],
+                "puntaje" => $partida['puntaje']
+            ];
 
             break;
         case 3: 
