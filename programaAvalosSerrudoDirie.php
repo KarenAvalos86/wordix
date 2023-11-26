@@ -118,22 +118,23 @@ function MostrarPartida($partidas){
  * @param string $nuevaPalabra5
  * @return array
  */
-function coleccionPalabrasModificada($arregloPalabras, $nuevaPalabra5){
-    // int $cantPalabras $i boolean $palabraEnArreglo
-
-    $cantPalabras = count($arregloPalabras);
+function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5) {
     $palabraEnArreglo = false;
-    $i = 0;
-    while ($i < $cantPalabras){
-    if (($arregloPalabras[$i]) == $nuevaPalabra5){
-    $palabraEnArreglo = true;
-    $nuevaPalabra5 = leerPalabra5Letras();
-    $i++;
-    } else {
-    $arregloPalabras[$cantPalabras + 1] = $nuevaPalabra5;
-}
-}
-    return ($arregloPalabras);
+
+    foreach ($coleccionPalabras as $palabra) {
+        if ($palabra == $nuevaPalabra5) {
+            $palabraEnArreglo = true;
+            echo "La palabra ya figura en Wordix:";
+            break; // La palabra ya está en el arreglo, no es necesario continuar
+        }
+    }
+
+    if (!$palabraEnArreglo) {
+        // Si la palabra no está en el arreglo, la agregamos
+        $coleccionPalabras[] = $nuevaPalabra5;
+    }
+
+    return $coleccionPalabras;
 }
 
 /** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
