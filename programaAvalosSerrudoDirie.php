@@ -19,18 +19,18 @@ include_once("wordix.php");
  * Obtiene una colección de palabras
  * @return array
  */
-function cargarColeccionPalabras()
-{
-    $coleccionPalabras = [
-        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
-        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
-        "HIELO", "PELON", "LIMON", "PALTA", "HUECO"
+    function cargarColeccionPalabras()
+    {
+        $coleccionPalabras = [
+         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
+         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
+         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+         "HIELO", "PELON", "LIMON", "PALTA", "HUECO"
         
-    ];
+        ];
 
     return ($coleccionPalabras);
-}
+    }
 
 /** Función cargarPartidas, inicializa una estructura de datos con ejemplos de partidas y retorna el arreglo
  * @return array
@@ -85,7 +85,7 @@ function pedirPalabra5Letras(){
  * @return int
  */
  
- function pedirNumeroValido(){ 
+function pedirNumeroValido(){ 
     // int $numeroElegido
     $nroElegido= solicitarNumeroEntre(0,9);
     return $nroElegido;
@@ -114,7 +114,7 @@ function MostrarPartida($partidas){
 
 
  /** 7) Función que dada la colección de palabras y una palabra, retorna la colección con la nueva palabra en ella.
- * @param array $arregloPalabras
+ * @param array $coleccionPalabras
  * @param string $nuevaPalabra5
  * @return array
  */
@@ -132,6 +132,7 @@ function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5) {
     if (!$palabraEnArreglo) {
         // Si la palabra no está en el arreglo, la agregamos
         $coleccionPalabras[] = $nuevaPalabra5;
+        echo "Se agrego una nueva palabra.";
     }
 
     return $coleccionPalabras;
@@ -243,6 +244,14 @@ function mostrarPartidasOrdenadas($partidas) {
 
 //Declaración de variables:
 
+/**
+ * array $estructuraPartidas, $estructuraPalabras, $palabrasJugadas, $partida, $intentosTotales, $estructuraMod
+ * int $opcion, $palabras, $palabraAleatoria, $cantidadPartidas, $partidasJugador, $puntajeTotal, $victorias, $i 
+ * string $jugadorSolicitado, $nroP, $nombreJugadorBusqueda, $nombreJugadorEstadisticas, $palabraAgregada
+ * boolean $encontrado, $partidaEncontrada, $jugadorExiste
+ * void $partidasOrdenadas, $visualizarPartida
+ */
+
 
 //Inicialización de variables:
 $estructurasPalabras = cargarColeccionPalabras();
@@ -250,7 +259,7 @@ $estructuraPartidas = cargarPartidas();
 
 //Proceso:
 
-/* */
+/*Menu programa principal */
 do {
     $opcion = SeleccionarOpcion();
 
@@ -374,25 +383,28 @@ do {
                     // Contar los intentos
                     $intentos = $partida['intentos'];
                     $intentosTotales[$intentos]++;
-        
-                    echo "*********************\n";
-                    echo "Jugador: " . $nombreJugadorEstadisticas . "\n";
-                    echo "Partidas jugadas: " . $partidasJugador . "\n";
-                    echo "Puntaje total: " . $puntajeTotal . "\n";
-                    echo "Partidas ganadas: " . $victorias . "\n";
-                    echo "Porcentaje de victorias: " . ($victorias / $partidasJugador * 100) . "%\n";
-        
-                // Mostrar intentos
-                for ($i = 1; $i <= 6; $i++) {
-                   echo "Intentos " . $i . ": " . $intentosTotales[$i] . "\n";
-                }
-        
-                echo "*********************\n";
                 }
             }
+            if($jugadorExiste){
+                echo "*********************\n";
+                echo "Jugador: " . $nombreJugadorEstadisticas . "\n";
+                echo "Partidas jugadas: " . $partidasJugador . "\n";
+                echo "Puntaje total: " . $puntajeTotal . "\n";
+                echo "Partidas ganadas: " . $victorias . "\n";
+                echo "Porcentaje de victorias: " . ($victorias / $partidasJugador * 100) . "%\n";
+                   // Mostrar intentos
+                   for ($i = 1; $i <= 6; $i++) {
+                    echo "Intentos " . $i . ": " . $intentosTotales[$i] . "\n";
+                 }
+                 echo "*********************\n";
+            }
+                    
         if (!$jugadorExiste){
+            echo "*********************\n";
             echo "No hay registros del jugador " .$nombreJugadorEstadisticas. "\n";
+            echo "*********************\n";
         }
+       
             break;
         
         case 6:
