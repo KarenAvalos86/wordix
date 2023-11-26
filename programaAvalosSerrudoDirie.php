@@ -44,7 +44,7 @@ function cargarColeccionPalabras()
         $partidas[2]= ["palabraWordix"=>"TINTO","jugador"=> "Pepito","intentos"=>3,"puntaje"=>15];
         $partidas[3]= ["palabraWordix"=>"NAVES","jugador"=> "Mati","intentos"=>5,"puntaje"=>13];
         $partidas[4]= ["palabraWordix"=>"PALTA","jugador"=> "Karen","intentos"=>2,"puntaje"=>15];
-        $partidas[5]= ["palabraWordix"=>"GATOS","jugador"=> "Devi","intentos"=>2,"puntaje"=>15];
+        $partidas[5]= ["palabraWordix"=>"GATOS","jugador"=> "devi","intentos"=>2,"puntaje"=>15];
         $partidas[6]= ["palabraWordix"=>"YUYOS","jugador"=> "Luana","intentos"=>1,"puntaje"=>17];
         $partidas[7]= ["palabraWordix"=>"PISOS","jugador"=> "Karen","intentos"=>0,"puntaje"=>0];
         $partidas[8]= ["palabraWordix"=>"LIMON","jugador"=> "Anto","intentos"=>5,"puntaje"=>12];
@@ -98,7 +98,7 @@ function pedirPalabra5Letras(){
 function MostrarPartida($partidas){
     echo "Ingrese el número de partida: ";
     $nroPartida= solicitarNumeroEntre(0,9);
-    echo "Partida WORDIX".$nroPartida. ": \nPalabras: ".$partidas[$nroPartida]["palabraWordix"]. "\n";
+    echo "Partida WORDIX: ".$nroPartida. ": \n Palabra: ".$partidas[$nroPartida]["palabraWordix"]. "\n";
     echo "Jugador: ".$partidas[$nroPartida]["jugador"]. "\n";
     echo "Puntaje: ".$partidas[$nroPartida]["puntaje"]. "\n";
     print_r("Intento: ".$partidas[$nroPartida]["intentos"]. "\n");
@@ -107,24 +107,26 @@ function MostrarPartida($partidas){
 
 
  /** 7) Función que dada la colección de palabras y una palabra, retorna la colección con la nueva palabra en ella.
- * @param array $coleccionPalabras
+ * @param array $arregloPalabras
  * @param string $nuevaPalabra5
  * @return array
  */
-function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5){
+function coleccionPalabrasModificada($arregloPalabras, $nuevaPalabra5){
     // int $cantPalabras $i boolean $palabraEnArreglo
-    $cantPalabras = count($coleccionPalabras);
+
+    $cantPalabras = count($arregloPalabras);
     $palabraEnArreglo = false;
     $i = 0;
     while ($i < $cantPalabras){
-    if (($coleccionPalabras[$i]) == $nuevaPalabra5){
+    if (($arregloPalabras[$i]) == $nuevaPalabra5){
     $palabraEnArreglo = true;
     $nuevaPalabra5 = leerPalabra5Letras();
+    $i++;
     } else {
-    $coleccionPalabras[$cantPalabras + 1] = $nuevaPalabra5;
-    return ($coleccionPalabras);
+    $arregloPalabras[$cantPalabras + 1] = $nuevaPalabra5;
 }
 }
+    return ($arregloPalabras);
 }
 
 /** 8) Dada una colección de partidas y nombre del jugador retorna el índice de la primer partida ganada del jugador
@@ -141,7 +143,7 @@ function PrimerGanada($partidas, $nombreJugador){
        
         $i++;
     }
-    if ($i=$cantIndices){
+    if ($i == $cantIndices){
         $indicePartida= -1;
     }else{
         $indicePartida= $i;
