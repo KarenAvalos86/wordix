@@ -350,10 +350,9 @@ do {
             break;
         case 5:
             echo "Ingrese el nombre del jugador que desea obtener su resumen: \n";
-            $nombreJugador = trim(fgets(STDIN));
-            $partidas = cargarPartidas();
+            $nombreJugador = solicitarJugador();
 
-            $resumen = resumenJugador($partidas, $nombreJugador);
+            $resumen = resumenJugador( $nombreJugador);
 
             echo "*********************";
             print_r($resumen['jugador']);
