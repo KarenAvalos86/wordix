@@ -249,26 +249,33 @@ do {
     
     switch ($opcion) {
         case 1: 
-              $jugadorSolicitado= solicitarJugador();
-		      $palabras= count($estructurasPalabras);
-		      echo "Ingrese un nro entre 0 y ".$palabras, ":";
-		      $nroP= trim(fgets(STDIN));
-		      $palabrasJugadas=[];
-		      $encontrado = false;
-		      $i=0;
-		      $cantPalabrasJugadas= count($palabrasJugadas);
-		      while ($i<$cantPalabrasJugadas){
-			    if (($palabrasJugadas[$i])==$nroP){
-				    $encontrado= true;
-				break;
-			    }
-			    echo "Ingrese un nro entre 0 y ".$palabra ."que no incluya".$nroP;
-			    $i++;
-		        } 
+            $jugadorSolicitado = solicitarJugador();
+            $palabras = count($estructurasPalabras);
 
+            // Pedir al usuario un número de palabra
+            do {
+                echo "Ingrese un número entre 0 y " . ($palabras - 1) . ": ";
+                $nroP = trim(fgets(STDIN));
+
+                if ($nroP < 0 || ($nroP >= $palabras)){
+                    echo "Número fuera de rango. Por favor, elija un número dentro del rango válido.\n";
+                }
+
+            } while ($nroP < 0 || ($nroP >= $palabras));
+
+            // Agregar el número de palabra a las palabras jugadas por el jugador
+            $palabrasJugadas[] = $nroP;
+
+            // Iniciar partida de Wordix con la palabra seleccionada
             $partida = jugarWordix($estructurasPalabras[$nroP], $jugadorSolicitado);
-            print_r($partida);
 
+            // Guardar los datos de la partida en la estructura de datos de partidas
+            $estructuraPartidas[] = [
+                "palabraWordix" => $estructurasPalabras[$nroP],
+                "jugador" => $jugadorSolicitado,
+                "intentos" => $partida['intentos'],
+                "puntaje" => $partida['puntaje']
+            ];
 
             break;
         case 2: 
