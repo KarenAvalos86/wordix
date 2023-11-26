@@ -235,7 +235,13 @@ function cmp($a,$b){
  */
 function mostrarPartidasOrdenadas($partidas) {
     uasort($partidas,'cmp');
-    print_r($partidas);
+    foreach($partidas as $partida){
+        echo "Palabra: ". $partida['palabraWordix']."\n";
+        echo "Jugador: ". $partida['jugador']."\n";
+        echo "Intentos: ". $partida['intentos']."\n";
+        echo "Puntaje: ". $partida['puntaje']."\n";
+        echo "------------------------\n";
+    }
 }
        
 /**************************************/
