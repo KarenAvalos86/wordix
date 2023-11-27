@@ -334,7 +334,9 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * Obtiene el puntaje de acuerdo a la cantidad de intentos
+ * @param array $arregloDeIntentosWordix
+ * @return int
  */
 function obtenerPuntajeWordix($arregloDeIntentosWordix)  
 {
