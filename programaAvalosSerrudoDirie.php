@@ -251,7 +251,7 @@ function mostrarPartidasOrdenadas($partidas) {
 //Declaración de variables:
 
 /**
- * array $estructuraPartidas, $estructuraPalabras, $palabrasJugadas, $partida, $intentosTotales, $estructuraMod
+ * array $estructuraPartidas, $estructuraPalabras, $palabrasJugadas, $partida, $intentosTotales, $estructuraMod, $estadisticasJugador
  * int $opcion, $palabras, $palabraAleatoria, $cantidadPartidas, $partidasJugador, $puntajeTotal, $victorias, $i 
  * string $jugadorSolicitado, $nroP, $nombreJugadorBusqueda, $nombreJugadorEstadisticas, $palabraAgregada
  * boolean $encontrado, $partidaEncontrada, $jugadorExiste
