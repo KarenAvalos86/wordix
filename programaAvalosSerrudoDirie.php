@@ -260,17 +260,21 @@ function solicitarJugador() {
 
 
 /** funcion comparación
- * @param array $a, $b
+ * @param array $partidaA, $partidaB
  * @return int
  * int $orden
  */
-function cmp($a,$b){
+function cmp($partidaA,$partidaB){
     $orden= 0;
-    if ($a['jugador']==$b["jugador"]){
-        if ($a['palabraWordix']==$b['palabraWordix']){
+    if ($partidaA['jugador']==$partidaB["jugador"]){
+        if ($partidaA['palabraWordix']==$partidaB['palabraWordix']){
             $orden= 0;
+        }elseif ($partidaA['palabraWordix']<$partidaB['palabraWordix']){
+            $orden= -1;
+        }else{
+            $orden= 1;
         }
-    }elseif ($a['jugador']<$b['jugador']){
+    }elseif ($partidaA['jugador']<$partidaB['jugador']){
         $orden= -1;
     }else{
         $orden= 1;
@@ -283,13 +287,7 @@ function cmp($a,$b){
  */
 function mostrarPartidasOrdenadas($partidas) {
     uasort($partidas,'cmp');
-    foreach($partidas as $partida){
-        echo "Palabra: ". $partida['palabraWordix']."\n";
-        echo "Jugador: ". $partida['jugador']."\n";
-        echo "Intentos: ". $partida['intentos']."\n";
-        echo "Puntaje: ". $partida['puntaje']."\n";
-        echo "------------------------\n";
-    }
+    print_r($partidas);
 }
        
 /**************************************/
@@ -414,7 +412,7 @@ do {
         
         case 6:
             $partidasOrdenadas= mostrarPartidasOrdenadas($estructuraPartidas);
-            print_r ($partidasOrdenadas);
+            
         
         break;
         case 7:
