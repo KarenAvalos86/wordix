@@ -38,7 +38,7 @@ include_once("wordix.php");
  */
 
     function cargarPartidas(){
-        $partidas=[];
+       /* $partidas=[];
         $partidas[0]= ["palabraWordix"=>"YUYOS","jugador"=> "anto", "intentos"=> 3,"puntaje"=>15];
         $partidas[1]= ["palabraWordix"=>"HUEVO","jugador"=> "karen", "intentos"=> 4,"puntaje"=>11];
         $partidas[2]= ["palabraWordix"=>"TINTO","jugador"=> "pepito","intentos"=>3,"puntaje"=>15];
@@ -49,7 +49,23 @@ include_once("wordix.php");
         $partidas[7]= ["palabraWordix"=>"PISOS","jugador"=> "karen","intentos"=>6,"puntaje"=>0];
         $partidas[8]= ["palabraWordix"=>"LIMON","jugador"=> "anto","intentos"=>5,"puntaje"=>12];
         $partidas[9]= ["palabraWordix"=>"HUECO","jugador"=> "mati","intentos"=>6,"puntaje"=>8];
-        return $partidas;
+        return $partidas;*/
+        $coleccion = [];
+        $pa1 = ["palabraWordix" => "SUECO", "jugador" => "kleiton", "intentos" => 6, "puntaje" => 0];
+        $pa2 = ["palabraWordix" => "YUYOS", "jugador" => "briba", "intentos" => 6, "puntaje" => 0];
+        $pa3 = ["palabraWordix" => "HUEVO", "jugador" => "zrack", "intentos" => 3, "puntaje" => 9];
+        $pa4 = ["palabraWordix" => "TINTO", "jugador" => "cabrito", "intentos" => 4, "puntaje" => 8];
+        $pa5 = ["palabraWordix" => "RASGO", "jugador" => "briba", "intentos" => 6, "puntaje" => 0];
+        $pa6 = ["palabraWordix" => "VERDE", "jugador" => "cabrito", "intentos" => 5, "puntaje" => 7];
+        $pa7 = ["palabraWordix" => "CASAS", "jugador" => "kleiton", "intentos" => 5, "puntaje" => 7];
+        $pa8 = ["palabraWordix" => "GOTAS", "jugador" => "kleiton", "intentos" => 6, "puntaje" => 0];
+        $pa9 = ["palabraWordix" => "ZORRO", "jugador" => "zrack", "intentos" => 4, "puntaje" => 8];
+        $pa10 = ["palabraWordix" => "GOTAS", "jugador" => "cabrito", "intentos" => 6, "puntaje" => 0];
+        $pa11 = ["palabraWordix" => "FUEGO", "jugador" => "cabrito", "intentos" => 2, "puntaje" => 10];
+        $pa12 = ["palabraWordix" => "TINTO", "jugador" => "briba", "intentos" => 6, "puntaje" => 0];
+
+array_push($coleccion, $pa1, $pa2, $pa3, $pa4, $pa5, $pa6, $pa7, $pa8, $pa9, $pa10, $pa11, $pa12);
+return $coleccion;
     }
 
 /** Función SeleccionarOpcion visualiza el menú de opciones y retorna la opción seleccionada, si esta es válida 
@@ -97,7 +113,7 @@ function pedirNumeroValido(){
  */
 function MostrarPartida($partidas){
     echo "Ingrese el número de partida: ";
-    $nroPartida= solicitarNumeroEntre(0,9);
+    $nroPartida= solicitarNumeroEntre(0,count($partidas)-1);
     echo "********************************** \n";
     echo "Partida WORDIX ".$nroPartida. ": Palabra ".$partidas[$nroPartida]["palabraWordix"]. "\n";
     echo "Jugador: ".$partidas[$nroPartida]["jugador"]. "\n";
