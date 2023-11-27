@@ -109,20 +109,19 @@ function pedirNumeroValido(){
 
 /** 6) Dado un nro de partida, da los datos de la partida
  * @param array $partidas
- * 
+ * @param int $indice
  */
-function MostrarPartida($partidas){
-    echo "Ingrese el número de partida: ";
-    $nroPartida= solicitarNumeroEntre(0,count($partidas)-1);
+function MostrarPartida($partidas,$indice){
+   
     echo "********************************** \n";
-    echo "Partida WORDIX ".$nroPartida. ": Palabra ".$partidas[$nroPartida]["palabraWordix"]. "\n";
-    echo "Jugador: ".$partidas[$nroPartida]["jugador"]. "\n";
-    echo "Puntaje: ".$partidas[$nroPartida]["puntaje"]. "\n";
-    if ($partidas[$nroPartida]["puntaje"]==0){
+    echo "Partida WORDIX ".$indice. ": Palabra ".$partidas[$indice]["palabraWordix"]. "\n";
+    echo "Jugador: ".$partidas[$indice]["jugador"]. "\n";
+    echo "Puntaje: ".$partidas[$indice]["puntaje"]. "\n";
+    if ($partidas[$indice]["puntaje"]==0){
         echo "Intento: No adivinó la palabra. \n";
     }
-    if ($partidas[$nroPartida]["puntaje"]>0){
-        print_r("Intento: Adivinó la palabra en ".$partidas[$nroPartida]["intentos"]. "\n");
+    if ($partidas[$indice]["puntaje"]>0){
+        print_r("Intento: Adivinó la palabra en ".$partidas[$indice]["intentos"]. "\n");
     }    
     echo "**********************************\n";
 }
@@ -161,20 +160,24 @@ function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5) {
  * int $indicePartida
  */
 function PrimerGanada($partidas, $nombreJugador){
-    $i=0;
-    $cantIndices= count($partidas);
-   
-    while($i<$cantIndices && (!($partidas[$i]["jugador"]==$nombreJugador) && !($partidas[$i]["puntaje"]>0))){
-       
+    $i = 0;
+    $cantIndices = count($partidas);
+    $indicePartida = -2; // Por defecto, el jugador no ha jugado ninguna partida
+
+    while($i < $cantIndices){
+        if ($partidas[$i]["jugador"] === $nombreJugador && $partidas[$i]["puntaje"] > 0){
+            // El jugador ganó esta partida, se retorna el índice y se termina la función
+            $indicePartida = $i;
+            break;
+        } elseif ($partidas[$i]["jugador"] === $nombreJugador && $partidas[$i]["puntaje"] === 0) {
+            // El jugador jugó pero no ganó, se marca como que jugó alguna partida
+            $indicePartida = -1;
+        }
         $i++;
     }
-    if ($i == $cantIndices){
-        $indicePartida= -1;
-    }else{
-        $indicePartida= $i;
-    }
+    
     return $indicePartida;
-}     
+}
 
 /** 9) Función que, tomando una colección de partidas y el nombre de un jugador, retorna el resumen de dicho jugador.
  * @param array $partidas
@@ -350,33 +353,25 @@ do {
             break;
         case 3: 
             $cantidadPartidas = count($estructuraPartidas);
-            $visualizarPartida = MostrarPartida($estructuraPartidas);
-
+            echo "Ingrese un numero de partida entre 0 y ".$cantidadPartidas. ": ";
+            
+            $nroPartida= solicitarNumeroEntre(0,$cantidadPartidas);
+            $visualizarPartida = MostrarPartida($estructuraPartidas,$nroPartida);
+            
             break;
         case 4:
             
                         $nombreJugadorBusqueda = solicitarJugador();
-                        $partidaEncontrada = false;
-                    
-                        // Buscar la primera partida ganadora del jugador
-                        foreach ($estructuraPartidas as $partida) {
-                            if ($partida['jugador'] === $nombreJugadorBusqueda && $partida['puntaje'] > 0) {
-                                echo "**********************************\n";
-                                echo "Partida WORDIX: palabra " . $partida['palabraWordix'] . "\n";
-                                echo "Jugador: " . $partida['jugador'] . "\n";
-                                echo "Puntaje: " . $partida['puntaje'] . " puntos\n";
-                                echo "Adivinó la palabra en " . $partida['intentos'] . " intentos\n";
-                                echo "**********************************\n";
-                                $partidaEncontrada = true;
-                                break;
-                            }
-                        }
-                    
-                        if ($partidaEncontrada && ($partida['jugador'] == $nombreJugadorBusqueda && $partida['puntaje'] == 0)){
+                        $partidaGanada1ra = PrimerGanada($estructuraPartidas,$nombreJugadorBusqueda);
+                                                               
+                        if ($partidaGanada1ra==-1){
                             echo "El jugador " .$nombreJugadorBusqueda. " no ganó ninguna partida. \n";
-                            }
-                        if (!$partidaEncontrada){
+                        }elseif ($partidaGanada1ra==-2){
                             echo "El jugador " .$nombreJugadorBusqueda. " no existe. \n";
+                        }else{
+                            $resumen1raPartidaGanada = MostrarPartida($estructuraPartidas, $partidaGanada1ra);
+                            echo $resumen1raPartidaGanada;                         
+
                         }
                     
             break;
