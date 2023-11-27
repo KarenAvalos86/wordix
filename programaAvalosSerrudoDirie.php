@@ -51,18 +51,18 @@ include_once("wordix.php");
         $partidas[9]= ["palabraWordix"=>"HUECO","jugador"=> "mati","intentos"=>6,"puntaje"=>8];
         return $partidas;*/
         $coleccion = [];
-        $pa1 = ["palabraWordix" => "SUECO", "jugador" => "kleiton", "intentos" => 6, "puntaje" => 0];
-        $pa2 = ["palabraWordix" => "YUYOS", "jugador" => "briba", "intentos" => 6, "puntaje" => 0];
+        $pa1 = ["palabraWordix" => "SUECO", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
+        $pa2 = ["palabraWordix" => "YUYOS", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
         $pa3 = ["palabraWordix" => "HUEVO", "jugador" => "zrack", "intentos" => 3, "puntaje" => 9];
         $pa4 = ["palabraWordix" => "TINTO", "jugador" => "cabrito", "intentos" => 4, "puntaje" => 8];
-        $pa5 = ["palabraWordix" => "RASGO", "jugador" => "briba", "intentos" => 6, "puntaje" => 0];
+        $pa5 = ["palabraWordix" => "RASGO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
         $pa6 = ["palabraWordix" => "VERDE", "jugador" => "cabrito", "intentos" => 5, "puntaje" => 7];
         $pa7 = ["palabraWordix" => "CASAS", "jugador" => "kleiton", "intentos" => 5, "puntaje" => 7];
-        $pa8 = ["palabraWordix" => "GOTAS", "jugador" => "kleiton", "intentos" => 6, "puntaje" => 0];
+        $pa8 = ["palabraWordix" => "GOTAS", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
         $pa9 = ["palabraWordix" => "ZORRO", "jugador" => "zrack", "intentos" => 4, "puntaje" => 8];
-        $pa10 = ["palabraWordix" => "GOTAS", "jugador" => "cabrito", "intentos" => 6, "puntaje" => 0];
+        $pa10 = ["palabraWordix" => "GOTAS", "jugador" => "cabrito", "intentos" => 0, "puntaje" => 0];
         $pa11 = ["palabraWordix" => "FUEGO", "jugador" => "cabrito", "intentos" => 2, "puntaje" => 10];
-        $pa12 = ["palabraWordix" => "TINTO", "jugador" => "briba", "intentos" => 6, "puntaje" => 0];
+        $pa12 = ["palabraWordix" => "TINTO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
 
 array_push($coleccion, $pa1, $pa2, $pa3, $pa4, $pa5, $pa6, $pa7, $pa8, $pa9, $pa10, $pa11, $pa12);
 return $coleccion;
@@ -185,36 +185,65 @@ function PrimerGanada($partidas, $nombreJugador){
  * @return array
  */
 function resumenJugador($partidas, $nombreJugador) {
-    $resumenJugador = array(
-        'jugador' => $nombreJugador,
-        'partidas' => 0,
-        'puntaje' => 0,
-        'victorias' => 0,
-        'intento1' => 0,
-        'intento2' => 0,
-        'intento3' => 0,
-        'intento4' => 0,
-        'intento5' => 0,
-        'intento6' => 0
-    );
+    
+    $jugadorExiste = false;
+        
+            $estadisticasJugador = array(
+                'jugador' => $nombreJugador,
+                'partidas' => 0,
+                'puntaje' => 0,
+                'victorias' => 0,
+                'intentos' => array(
+                    1 => 0,
+                    2 => 0,
+                    3 => 0,
+                    4 => 0,
+                    5 => 0,
+                    6 => 0
+                )
+            );
+            foreach($partidas as $partida){
+                if ($partida['jugador'] == $nombreJugador){
+                    $jugadorExiste = true;
+                    $estadisticasJugador['partidas']++;
+                    $estadisticasJugador['puntaje'] += $partida['puntaje'];
+            
+                    if ($partida['puntaje'] > 0) {
+                        $estadisticasJugador['victorias']++;
+                    }
+            
+                    // Contar los intentos
+                    if ($partida['puntaje']==0){
+                        $intentos=0;
+                    }else{
+                        $intentos = $partida['intentos'];
+                        $estadisticasJugador['intentos'][$intentos]++;
 
-    foreach ($partidas as $partida) {
-        if ($partida['jugador'] === $nombreJugador) {
-            $resumenJugador['partidas']++;
-            $resumenJugador['puntaje'] += $partida['puntaje'];
-
-            if ($partida['puntaje'] > 0) {
-                $resumenJugador['victorias']++;
+                    }                                     
+                    
+                }
             }
-
-            for ($i = 1; $i <= 6; $i++) {
-                $resumenJugador["intento$i"] += $partida["intentos"];
+            if($jugadorExiste){
+                echo "*********************\n";
+                echo "Jugador: " . $estadisticasJugador['jugador'] . "\n";
+                echo "Partidas jugadas: " . $estadisticasJugador['partidas'] . "\n";
+                echo "Puntaje total: " . $estadisticasJugador['puntaje'] . "\n";
+                echo "Partidas ganadas: " . $estadisticasJugador['victorias'] . "\n";
+                echo "Porcentaje de victorias: " . ($estadisticasJugador['victorias'] / $estadisticasJugador['partidas'] * 100) . "%\n";
+            
+                // Mostrar intentos
+                for ($i = 1; $i <= 6; $i++) {
+                    echo "Intentos " . $i . ": " . $estadisticasJugador['intentos'][$i] . "\n";
+                }
+                echo "*********************\n";
             }
+            if (!$jugadorExiste){
+                echo "*********************\n";
+                echo "No hay registros del jugador " .$nombreJugador. "\n";
+                echo "*********************\n";
+            }
+            return $estadisticasJugador;
         }
-    }
-
-    return $resumenJugador;
-}
 
 
 /** 10 Función que solicita el nombre del jugador y lo retorna en minúsculas, asegurándose siempre de que tal nombre comience con una letra.
@@ -378,56 +407,9 @@ do {
         case 5:
            
             $nombreJugadorEstadisticas = solicitarJugador();
-            $jugadorExiste = false;
-        
-            $estadisticasJugador = array(
-                'jugador' => $nombreJugadorEstadisticas,
-                'partidas' => 0,
-                'puntaje' => 0,
-                'victorias' => 0,
-                'intentos' => array(
-                    1 => 0,
-                    2 => 0,
-                    3 => 0,
-                    4 => 0,
-                    5 => 0,
-                    6 => 0
-                )
-            );
-            foreach($estructuraPartidas as $partida){
-                if ($partida['jugador'] == $nombreJugadorEstadisticas){
-                    $jugadorExiste = true;
-                    $estadisticasJugador['partidas']++;
-                    $estadisticasJugador['puntaje'] += $partida['puntaje'];
+            $elResumenJugador= resumenJugador($estructuraPartidas, $nombreJugadorEstadisticas);
+               
             
-                    if ($partida['puntaje'] > 0) {
-                        $estadisticasJugador['victorias']++;
-                    }
-            
-                    // Contar los intentos
-                    $intentos = $partida['intentos'];
-                    $estadisticasJugador['intentos'][$intentos]++;
-                }
-            }
-            if($jugadorExiste){
-                echo "*********************\n";
-                echo "Jugador: " . $estadisticasJugador['jugador'] . "\n";
-                echo "Partidas jugadas: " . $estadisticasJugador['partidas'] . "\n";
-                echo "Puntaje total: " . $estadisticasJugador['puntaje'] . "\n";
-                echo "Partidas ganadas: " . $estadisticasJugador['victorias'] . "\n";
-                echo "Porcentaje de victorias: " . ($estadisticasJugador['victorias'] / $estadisticasJugador['partidas'] * 100) . "%\n";
-            
-                // Mostrar intentos
-                for ($i = 1; $i <= 6; $i++) {
-                    echo "Intentos " . $i . ": " . $estadisticasJugador['intentos'][$i] . "\n";
-                }
-                echo "*********************\n";
-            }
-            if (!$jugadorExiste){
-                echo "*********************\n";
-                echo "No hay registros del jugador " .$nombreJugadorEstadisticas. "\n";
-                echo "*********************\n";
-            }
         break;
         
         case 6:
