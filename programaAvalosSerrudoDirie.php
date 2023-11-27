@@ -420,7 +420,7 @@ do {
         break;
         case 7:
             $palabraAgregada = leerPalabra5Letras();
-            $estructuraMod = coleccionPalabrasModificada($estructurasPalabras, $palabraAgregada);
+            $estructurasPalabras = coleccionPalabrasModificada($estructurasPalabras, $palabraAgregada);
 
         break;
             //...
