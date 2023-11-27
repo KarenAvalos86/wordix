@@ -367,51 +367,57 @@ do {
         case 5:
            
             $nombreJugadorEstadisticas = solicitarJugador();
-        
-            // Inicializar las variables para las estadísticas del jugador
-            $partidasJugador = 0;
-            $puntajeTotal = 0;
-            $victorias = 0;
-            $intentosTotales = [0, 0, 0, 0, 0, 0, 0]; // Intentos por cada posible intento (de 1 a 6)
             $jugadorExiste = false;
         
-            // Calcular las estadísticas del jugador
+            $estadisticasJugador = array(
+                'jugador' => $nombreJugadorEstadisticas,
+                'partidas' => 0,
+                'puntaje' => 0,
+                'victorias' => 0,
+                'intentos' => array(
+                    1 => 0,
+                    2 => 0,
+                    3 => 0,
+                    4 => 0,
+                    5 => 0,
+                    6 => 0
+                )
+            );
             foreach($estructuraPartidas as $partida){
                 if ($partida['jugador'] == $nombreJugadorEstadisticas){
                     $jugadorExiste = true;
-                    $partidasJugador++;
-                    $puntajeTotal += $partida['puntaje'];
-        
+                    $estadisticasJugador['partidas']++;
+                    $estadisticasJugador['puntaje'] += $partida['puntaje'];
+            
                     if ($partida['puntaje'] > 0) {
-                        $victorias++;
+                        $estadisticasJugador['victorias']++;
                     }
-        
+            
                     // Contar los intentos
                     $intentos = $partida['intentos'];
-                    $intentosTotales[$intentos]++;
+                    $estadisticasJugador['intentos'][$intentos]++;
                 }
             }
             if($jugadorExiste){
                 echo "*********************\n";
-                echo "Jugador: " . $nombreJugadorEstadisticas . "\n";
-                echo "Partidas jugadas: " . $partidasJugador . "\n";
-                echo "Puntaje total: " . $puntajeTotal . "\n";
-                echo "Partidas ganadas: " . $victorias . "\n";
-                echo "Porcentaje de victorias: " . ($victorias / $partidasJugador * 100) . "%\n";
-                   // Mostrar intentos
-                   for ($i = 1; $i <= 6; $i++) {
-                    echo "Intentos " . $i . ": " . $intentosTotales[$i] . "\n";
-                 }
-                 echo "*********************\n";
+                echo "Jugador: " . $estadisticasJugador['jugador'] . "\n";
+                echo "Partidas jugadas: " . $estadisticasJugador['partidas'] . "\n";
+                echo "Puntaje total: " . $estadisticasJugador['puntaje'] . "\n";
+                echo "Partidas ganadas: " . $estadisticasJugador['victorias'] . "\n";
+                echo "Porcentaje de victorias: " . ($estadisticasJugador['victorias'] / $estadisticasJugador['partidas'] * 100) . "%\n";
+            
+                // Mostrar intentos
+                for ($i = 1; $i <= 6; $i++) {
+                    echo "Intentos " . $i . ": " . $estadisticasJugador['intentos'][$i] . "\n";
+                }
+                echo "*********************\n";
             }
-                    
-        if (!$jugadorExiste){
-            echo "*********************\n";
-            echo "No hay registros del jugador " .$nombreJugadorEstadisticas. "\n";
-            echo "*********************\n";
-        }
-       
-            break;
+            if (!$jugadorExiste){
+                echo "*********************\n";
+                echo "No hay registros del jugador " .$nombreJugadorEstadisticas. "\n";
+                echo "*********************\n";
+            }
+        break;
         
         case 6:
             $partidasOrdenadas= mostrarPartidasOrdenadas($estructuraPartidas);
