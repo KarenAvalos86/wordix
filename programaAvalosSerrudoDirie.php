@@ -146,7 +146,6 @@ function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5)
         if ($palabra == $nuevaPalabra5) {
             $palabraEnArreglo = true;
             echo "La palabra ya figura en Wordix:";
-            break; // La palabra ya está en el arreglo, no es necesario continuar
         }
     }
 
@@ -175,7 +174,6 @@ function PrimerGanada($partidas, $nombreJugador)
         if ($partidas[$i]["jugador"] === $nombreJugador && $partidas[$i]["puntaje"] > 0) {
             // El jugador ganó esta partida, se retorna el índice y se termina la función
             $indicePartida = $i;
-            break;
         } elseif ($partidas[$i]["jugador"] === $nombreJugador && $partidas[$i]["puntaje"] === 0) {
             // El jugador jugó pero no ganó, se marca como que jugó alguna partida
             $indicePartida = -1;
@@ -306,18 +304,17 @@ function mostrarPartidasOrdenadas($partidas)
  * @return boolean
  */
 function palabraUtilizadaPorJugador($palabraElegida, $jugador, $partidas)
-{    
+{
     $repetida = false;
-    $i=0;
+    $i = 0;
 
-        while ($i<count($partidas) && !($partidas[$i]['jugador'] == $jugador && $partidas[$i]['palabraWordix'] == $palabraElegida)){   
+    while ($i < count($partidas) && !($partidas[$i]['jugador'] == $jugador && $partidas[$i]['palabraWordix'] == $palabraElegida)) {
         $i++;
-        }
-        if ($i<count($partidas)){
-            $repetida = true;
-            
     }
-   
+    if ($i < count($partidas)) {
+        $repetida = true;
+    }
+
     return $repetida;
 }
 
@@ -351,51 +348,33 @@ do {
     switch ($opcion) {
         case 1:
             $jugadorSolicitado = solicitarJugador();
-            $palabras = count($estructurasPalabras)-1;
+            $palabras = count($estructurasPalabras) - 1;
             //
             echo "Elige un número entre 0 y " . ($palabras) . ": ";
             $numPartida = solicitarNumeroEntre(0, $palabras);
             $palabraElegida = $estructurasPalabras[$numPartida];
             $palabrasUsadas = palabraUtilizadaPorJugador($palabraElegida, $jugadorSolicitado, $estructuraPartidas);
-            if ($palabrasUsadas== false) {
+            if ($palabrasUsadas == false) {
                 $estructuraPartidas[count($estructuraPartidas)] = jugarWordix($estructurasPalabras[$numPartida], $jugadorSolicitado);
-                
             } else {
                 echo "Esta palabra ya ha sido utilizada. Por favor, elige otra. \n";
                 // Iniciar partida de Wordix con la palabra seleccionada
-                
+
             }
 
             break;
         case 2:
+
             $jugadorSolicitado = solicitarJugador();
             $palabras = count($estructurasPalabras);
-            $palabrasJugadas = [];
 
             // Obtener una palabra aleatoria que no haya sido jugada por el jugador
             do {
                 $palabraAleatoria = rand(0, $palabras - 1);
+                $palabrasUsadas = palabraUtilizadaPorJugador($palabraAleatoria, $jugadorSolicitado, $estructuraPartidas);
+            } while ($palabrasUsadas);
 
-                // Verificar si la palabra aleatoria ya ha sido jugada
-                $encontrado = false;
-                foreach ($palabrasJugadas as $palabraJugada) {
-                    if ($palabraJugada == $palabraAleatoria) {
-                        $encontrado = true;
-                        break;
-                    }
-                }
-            } while ($encontrado);
-
-            $palabrasJugadas[] = $palabraAleatoria;
-
-            $partida = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
-
-            $estructuraPartidas[] = [
-                "palabraWordix" => $estructurasPalabras[$palabraAleatoria],
-                "jugador" => $jugadorSolicitado,
-                "intentos" => $partida['intentos'],
-                "puntaje" => $partida['puntaje']
-            ];
+            $estructuraPartidas[count($estructuraPartidas)] = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
 
             break;
         case 3:
