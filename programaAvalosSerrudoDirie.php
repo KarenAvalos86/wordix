@@ -289,6 +289,29 @@ function mostrarPartidasOrdenadas($partidas) {
     uasort($partidas,'cmp');
     print_r($partidas);
 }
+
+/** Función elegirPalabra
+ * @param array $coleccionPalabras
+ * @param int $numero
+ * @param string $jugador
+ * @param array $partidas
+ * @return boolean
+ */
+function palabraUtilizadaPorJugador($coleccionPalabras, $numero, $jugador, $partidas){
+    $palabraElegida = $coleccionPalabras[$numero];
+    $repetida = false;
+
+    foreach ($partidas as $partida) {
+        // Verificar si el jugador actual ha utilizado la palabra
+        if ($partida['jugador'] === $jugador && $partida['palabraWordix'] === $palabraElegida) {
+            $repetida = true;
+        } else {
+            $repetida = false;
+        }
+    }
+
+    return $repetida;
+}
        
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -320,31 +343,22 @@ do {
         case 1: 
             $jugadorSolicitado = solicitarJugador();
             $palabras = count($estructurasPalabras);
+            //
+            echo "Elige un número entre 0 y " . (count($estructurasPalabras) - 1) . ": ";
+            $numPartida = solicitarNumeroEntre(0, count($estructurasPalabras) - 1);
 
-            // Pedir al usuario un número de palabra
-            do {
-                echo "Ingrese un número entre 0 y " . ($palabras - 1) . ": ";
-                $nroP = trim(fgets(STDIN));
-
-                if ($nroP < 0 || ($nroP >= $palabras)){
-                    echo "Número fuera de rango. Por favor, elija un número dentro del rango válido.\n";
-                }
-
-            } while ($nroP < 0 || ($nroP >= $palabras));
+            $palabrasUsadas = palabraUtilizadaPorJugador($estructurasPalabras, $numPartida, $jugadorSolicitado, $estructuraPartidas);
+            if ($palabrasUsadas){
+                echo "Esta palabra ya ha sido utilizada. Por favor, elige otra. \n";
+            } else {
 
             // Agregar el número de palabra a las palabras jugadas por el jugador
-            $palabrasJugadas[] = $nroP;
+            $palabrasJugadas[] = $numPartida;
 
             // Iniciar partida de Wordix con la palabra seleccionada
-            $partida = jugarWordix($estructurasPalabras[$nroP], $jugadorSolicitado);
+            $partida = jugarWordix($estructurasPalabras[$numPartida], $jugadorSolicitado);
 
-            // Guardar los datos de la partida en la estructura de datos de partidas
-            $estructuraPartidas[] = [
-                "palabraWordix" => $estructurasPalabras[$nroP],
-                "jugador" => $jugadorSolicitado,
-                "intentos" => $partida['intentos'],
-                "puntaje" => $partida['puntaje']
-            ];
+            }
 
             break;
         case 2: 
