@@ -19,26 +19,27 @@ include_once("wordix.php");
  * Obtiene una colección de palabras
  * @return array
  */
-    function cargarColeccionPalabras()
-    {
-        $coleccionPalabras = [
-         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
-         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
-         "HIELO", "PELON", "LIMON", "PALTA", "HUECO"
-        
-        ];
+function cargarColeccionPalabras()
+{
+    $coleccionPalabras = [
+        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
+        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "HIELO", "PELON", "LIMON", "PALTA", "HUECO"
+
+    ];
 
     return ($coleccionPalabras);
-    }
+}
 
 /** Función cargarPartidas, inicializa una estructura de datos con ejemplos de partidas y retorna el arreglo
  * @return array
  * array $partidas
  */
 
-    function cargarPartidas(){
-       /* $partidas=[];
+function cargarPartidas()
+{
+    /* $partidas=[];
         $partidas[0]= ["palabraWordix"=>"YUYOS","jugador"=> "anto", "intentos"=> 3,"puntaje"=>15];
         $partidas[1]= ["palabraWordix"=>"HUEVO","jugador"=> "karen", "intentos"=> 4,"puntaje"=>11];
         $partidas[2]= ["palabraWordix"=>"TINTO","jugador"=> "pepito","intentos"=>3,"puntaje"=>15];
@@ -50,47 +51,49 @@ include_once("wordix.php");
         $partidas[8]= ["palabraWordix"=>"LIMON","jugador"=> "anto","intentos"=>5,"puntaje"=>12];
         $partidas[9]= ["palabraWordix"=>"HUECO","jugador"=> "mati","intentos"=>6,"puntaje"=>8];
         return $partidas;*/
-        $coleccion = [];
-        $pa1 = ["palabraWordix" => "SUECO", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
-        $pa2 = ["palabraWordix" => "YUYOS", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
-        $pa3 = ["palabraWordix" => "HUEVO", "jugador" => "zrack", "intentos" => 3, "puntaje" => 9];
-        $pa4 = ["palabraWordix" => "TINTO", "jugador" => "cabrito", "intentos" => 4, "puntaje" => 8];
-        $pa5 = ["palabraWordix" => "RASGO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
-        $pa6 = ["palabraWordix" => "VERDE", "jugador" => "cabrito", "intentos" => 5, "puntaje" => 7];
-        $pa7 = ["palabraWordix" => "CASAS", "jugador" => "kleiton", "intentos" => 5, "puntaje" => 7];
-        $pa8 = ["palabraWordix" => "GOTAS", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
-        $pa9 = ["palabraWordix" => "ZORRO", "jugador" => "zrack", "intentos" => 4, "puntaje" => 8];
-        $pa10 = ["palabraWordix" => "GOTAS", "jugador" => "cabrito", "intentos" => 0, "puntaje" => 0];
-        $pa11 = ["palabraWordix" => "FUEGO", "jugador" => "cabrito", "intentos" => 2, "puntaje" => 10];
-        $pa12 = ["palabraWordix" => "TINTO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
+    $coleccion = [];
+    $pa1 = ["palabraWordix" => "SUECO", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
+    $pa2 = ["palabraWordix" => "YUYOS", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
+    $pa3 = ["palabraWordix" => "HUEVO", "jugador" => "zrack", "intentos" => 3, "puntaje" => 9];
+    $pa4 = ["palabraWordix" => "TINTO", "jugador" => "cabrito", "intentos" => 4, "puntaje" => 8];
+    $pa5 = ["palabraWordix" => "RASGO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
+    $pa6 = ["palabraWordix" => "VERDE", "jugador" => "cabrito", "intentos" => 5, "puntaje" => 7];
+    $pa7 = ["palabraWordix" => "CASAS", "jugador" => "kleiton", "intentos" => 5, "puntaje" => 7];
+    $pa8 = ["palabraWordix" => "GOTAS", "jugador" => "kleiton", "intentos" => 0, "puntaje" => 0];
+    $pa9 = ["palabraWordix" => "ZORRO", "jugador" => "zrack", "intentos" => 4, "puntaje" => 8];
+    $pa10 = ["palabraWordix" => "GOTAS", "jugador" => "cabrito", "intentos" => 0, "puntaje" => 0];
+    $pa11 = ["palabraWordix" => "FUEGO", "jugador" => "cabrito", "intentos" => 2, "puntaje" => 10];
+    $pa12 = ["palabraWordix" => "TINTO", "jugador" => "briba", "intentos" => 0, "puntaje" => 0];
 
-array_push($coleccion, $pa1, $pa2, $pa3, $pa4, $pa5, $pa6, $pa7, $pa8, $pa9, $pa10, $pa11, $pa12);
-return $coleccion;
-    }
+    array_push($coleccion, $pa1, $pa2, $pa3, $pa4, $pa5, $pa6, $pa7, $pa8, $pa9, $pa10, $pa11, $pa12);
+    return $coleccion;
+}
 
 /** Función SeleccionarOpcion visualiza el menú de opciones y retorna la opción seleccionada, si esta es válida 
  * @return int
  * int $menuOpciones
  */
-    function SeleccionarOpcion(){
-        echo "\n1) Jugar al wordix con una palabra elegida. \n";
-        echo "2) Jugar al wordix con una palabra aleatoria. \n";
-        echo "3) Mostrar una partida \n";
-        echo "4) Mostrar la primer partida ganadora \n";
-        echo "5) Mostrar resumen de Jugador \n";
-        echo "6) Mostrar listado de partidas ordenadas por jugador y por palabra \n";
-        echo "7) Agregar una palabra de 5 letras a Wordix \n";
-        echo "8) Salir \n";
-        echo "Seleccione una opción del menú:";
-        $menuOpciones= solicitarNumeroEntre(1,8);
-        return ($menuOpciones);
-    }
+function SeleccionarOpcion()
+{
+    echo "\n1) Jugar al wordix con una palabra elegida. \n";
+    echo "2) Jugar al wordix con una palabra aleatoria. \n";
+    echo "3) Mostrar una partida \n";
+    echo "4) Mostrar la primer partida ganadora \n";
+    echo "5) Mostrar resumen de Jugador \n";
+    echo "6) Mostrar listado de partidas ordenadas por jugador y por palabra \n";
+    echo "7) Agregar una palabra de 5 letras a Wordix \n";
+    echo "8) Salir \n";
+    echo "Seleccione una opción del menú:";
+    $menuOpciones = solicitarNumeroEntre(1, 8);
+    return ($menuOpciones);
+}
 
 /** 4)
  *  Solicita y verifica que se ingresen palabras de 5 letras y las retorna en mayúscula
  * @return string
  */
-function pedirPalabra5Letras(){
+function pedirPalabra5Letras()
+{
     //string $palabraPedida
     $palabraPedida = leerPalabra5Letras();
     return $palabraPedida;
@@ -100,40 +103,43 @@ function pedirPalabra5Letras(){
  * 
  * @return int
  */
- 
-function pedirNumeroValido(){ 
+
+function pedirNumeroValido()
+{
     // int $numeroElegido
-    $nroElegido= solicitarNumeroEntre(0,9);
+    $nroElegido = solicitarNumeroEntre(0, 9);
     return $nroElegido;
- }
+}
 
 /** 6) Dado un nro de partida, da los datos de la partida
  * @param array $partidas
  * @param int $indice
  */
-function MostrarPartida($partidas,$indice){
-   
+function MostrarPartida($partidas, $indice)
+{
+
     echo "********************************** \n";
-    echo "Partida WORDIX ".$indice. ": Palabra ".$partidas[$indice]["palabraWordix"]. "\n";
-    echo "Jugador: ".$partidas[$indice]["jugador"]. "\n";
-    echo "Puntaje: ".$partidas[$indice]["puntaje"]. "\n";
-    if ($partidas[$indice]["puntaje"]==0){
+    echo "Partida WORDIX " . $indice . ": Palabra " . $partidas[$indice]["palabraWordix"] . "\n";
+    echo "Jugador: " . $partidas[$indice]["jugador"] . "\n";
+    echo "Puntaje: " . $partidas[$indice]["puntaje"] . "\n";
+    if ($partidas[$indice]["puntaje"] == 0) {
         echo "Intento: No adivinó la palabra. \n";
     }
-    if ($partidas[$indice]["puntaje"]>0){
-        print_r("Intento: Adivinó la palabra en ".$partidas[$indice]["intentos"]. "\n");
-    }    
+    if ($partidas[$indice]["puntaje"] > 0) {
+        print_r("Intento: Adivinó la palabra en " . $partidas[$indice]["intentos"] . "\n");
+    }
     echo "**********************************\n";
 }
 
 
 
- /** 7) Función que dada la colección de palabras y una palabra, retorna la colección con la nueva palabra en ella.
+/** 7) Función que dada la colección de palabras y una palabra, retorna la colección con la nueva palabra en ella.
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra5
  * @return array
  */
-function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5) {
+function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5)
+{
     $palabraEnArreglo = false;
 
     foreach ($coleccionPalabras as $palabra) {
@@ -159,13 +165,14 @@ function coleccionPalabrasModificada($coleccionPalabras, $nuevaPalabra5) {
  * @return int
  * int $indicePartida
  */
-function PrimerGanada($partidas, $nombreJugador){
+function PrimerGanada($partidas, $nombreJugador)
+{
     $i = 0;
     $cantIndices = count($partidas);
     $indicePartida = -2; // Por defecto, el jugador no ha jugado ninguna partida
 
-    while($i < $cantIndices){
-        if ($partidas[$i]["jugador"] === $nombreJugador && $partidas[$i]["puntaje"] > 0){
+    while ($i < $cantIndices) {
+        if ($partidas[$i]["jugador"] === $nombreJugador && $partidas[$i]["puntaje"] > 0) {
             // El jugador ganó esta partida, se retorna el índice y se termina la función
             $indicePartida = $i;
             break;
@@ -175,7 +182,7 @@ function PrimerGanada($partidas, $nombreJugador){
         }
         $i++;
     }
-    
+
     return $indicePartida;
 }
 
@@ -184,76 +191,76 @@ function PrimerGanada($partidas, $nombreJugador){
  * @param string $nombreJugador
  * @return array
  */
-function resumenJugador($partidas, $nombreJugador) {
-    
-    $jugadorExiste = false;
-        
-            $estadisticasJugador = array(
-                'jugador' => $nombreJugador,
-                'partidas' => 0,
-                'puntaje' => 0,
-                'victorias' => 0,
-                'intentos' => array(
-                    1 => 0,
-                    2 => 0,
-                    3 => 0,
-                    4 => 0,
-                    5 => 0,
-                    6 => 0
-                )
-            );
-            foreach($partidas as $partida){
-                if ($partida['jugador'] == $nombreJugador){
-                    $jugadorExiste = true;
-                    $estadisticasJugador['partidas']++;
-                    $estadisticasJugador['puntaje'] += $partida['puntaje'];
-            
-                    if ($partida['puntaje'] > 0) {
-                        $estadisticasJugador['victorias']++;
-                    }
-            
-                    // Contar los intentos
-                    if ($partida['puntaje']==0){
-                        $intentos=0;
-                    }else{
-                        $intentos = $partida['intentos'];
-                        $estadisticasJugador['intentos'][$intentos]++;
+function resumenJugador($partidas, $nombreJugador)
+{
 
-                    }                                     
-                    
-                }
+    $jugadorExiste = false;
+
+    $estadisticasJugador = array(
+        'jugador' => $nombreJugador,
+        'partidas' => 0,
+        'puntaje' => 0,
+        'victorias' => 0,
+        'intentos' => array(
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0
+        )
+    );
+    foreach ($partidas as $partida) {
+        if ($partida['jugador'] == $nombreJugador) {
+            $jugadorExiste = true;
+            $estadisticasJugador['partidas']++;
+            $estadisticasJugador['puntaje'] += $partida['puntaje'];
+
+            if ($partida['puntaje'] > 0) {
+                $estadisticasJugador['victorias']++;
             }
-            if($jugadorExiste){
-                echo "*********************\n";
-                echo "Jugador: " . $estadisticasJugador['jugador'] . "\n";
-                echo "Partidas jugadas: " . $estadisticasJugador['partidas'] . "\n";
-                echo "Puntaje total: " . $estadisticasJugador['puntaje'] . "\n";
-                echo "Partidas ganadas: " . $estadisticasJugador['victorias'] . "\n";
-                echo "Porcentaje de victorias: " . ($estadisticasJugador['victorias'] / $estadisticasJugador['partidas'] * 100) . "%\n";
-            
-                // Mostrar intentos
-                for ($i = 1; $i <= 6; $i++) {
-                    echo "Intentos " . $i . ": " . $estadisticasJugador['intentos'][$i] . "\n";
-                }
-                echo "*********************\n";
+
+            // Contar los intentos
+            if ($partida['puntaje'] == 0) {
+                $intentos = 0;
+            } else {
+                $intentos = $partida['intentos'];
+                $estadisticasJugador['intentos'][$intentos]++;
             }
-            if (!$jugadorExiste){
-                echo "*********************\n";
-                echo "No hay registros del jugador " .$nombreJugador. "\n";
-                echo "*********************\n";
-            }
-            return $estadisticasJugador;
         }
+    }
+    if ($jugadorExiste) {
+        echo "*********************\n";
+        echo "Jugador: " . $estadisticasJugador['jugador'] . "\n";
+        echo "Partidas jugadas: " . $estadisticasJugador['partidas'] . "\n";
+        echo "Puntaje total: " . $estadisticasJugador['puntaje'] . "\n";
+        echo "Partidas ganadas: " . $estadisticasJugador['victorias'] . "\n";
+        echo "Porcentaje de victorias: " . ($estadisticasJugador['victorias'] / $estadisticasJugador['partidas'] * 100) . "%\n";
+
+        // Mostrar intentos
+        for ($i = 1; $i <= 6; $i++) {
+            echo "Intentos " . $i . ": " . $estadisticasJugador['intentos'][$i] . "\n";
+        }
+        echo "*********************\n";
+    }
+    if (!$jugadorExiste) {
+        echo "*********************\n";
+        echo "No hay registros del jugador " . $nombreJugador . "\n";
+        echo "*********************\n";
+    }
+    return $estadisticasJugador;
+}
 
 
 /** 10 Función que solicita el nombre del jugador y lo retorna en minúsculas, asegurándose siempre de que tal nombre comience con una letra.
  * @return string
  */
-function solicitarJugador() {
+function solicitarJugador()
+{
     do {
         echo "Ingrese el nombre del jugador (debe comenzar con una letra): ";
         $nombreJugador = strtolower(trim(fgets(STDIN)));
-    } while (!ctype_alpha($nombreJugador[0])); 
+    } while (!ctype_alpha($nombreJugador[0]));
 
     return $nombreJugador;
 }
@@ -264,20 +271,21 @@ function solicitarJugador() {
  * @return int
  * int $orden
  */
-function cmp($partidaA,$partidaB){
-    $orden= 0;
-    if ($partidaA['jugador']==$partidaB["jugador"]){
-        if ($partidaA['palabraWordix']==$partidaB['palabraWordix']){
-            $orden= 0;
-        }elseif ($partidaA['palabraWordix']<$partidaB['palabraWordix']){
-            $orden= -1;
-        }else{
-            $orden= 1;
+function cmp($partidaA, $partidaB)
+{
+    $orden = 0;
+    if ($partidaA['jugador'] == $partidaB["jugador"]) {
+        if ($partidaA['palabraWordix'] == $partidaB['palabraWordix']) {
+            $orden = 0;
+        } elseif ($partidaA['palabraWordix'] < $partidaB['palabraWordix']) {
+            $orden = -1;
+        } else {
+            $orden = 1;
         }
-    }elseif ($partidaA['jugador']<$partidaB['jugador']){
-        $orden= -1;
-    }else{
-        $orden= 1;
+    } elseif ($partidaA['jugador'] < $partidaB['jugador']) {
+        $orden = -1;
+    } else {
+        $orden = 1;
     }
     return $orden;
 }
@@ -285,8 +293,9 @@ function cmp($partidaA,$partidaB){
 /** Inciso 11 ordena las partidas según jugador y palabra
  * @param array $partidas
  */
-function mostrarPartidasOrdenadas($partidas) {
-    uasort($partidas,'cmp');
+function mostrarPartidasOrdenadas($partidas)
+{
+    uasort($partidas, 'cmp');
     print_r($partidas);
 }
 
@@ -297,7 +306,8 @@ function mostrarPartidasOrdenadas($partidas) {
  * @param array $partidas
  * @return boolean
  */
-function palabraUtilizadaPorJugador($coleccionPalabras, $numero, $jugador, $partidas){
+function palabraUtilizadaPorJugador($coleccionPalabras, $numero, $jugador, $partidas)
+{
     $palabraElegida = $coleccionPalabras[$numero];
     $repetida = false;
 
@@ -312,7 +322,7 @@ function palabraUtilizadaPorJugador($coleccionPalabras, $numero, $jugador, $part
 
     return $repetida;
 }
-       
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -338,9 +348,9 @@ $estructuraPartidas = cargarPartidas();
 do {
     $opcion = SeleccionarOpcion();
 
-    
+
     switch ($opcion) {
-        case 1: 
+        case 1:
             $jugadorSolicitado = solicitarJugador();
             $palabras = count($estructurasPalabras);
             //
@@ -348,28 +358,27 @@ do {
             $numPartida = solicitarNumeroEntre(0, count($estructurasPalabras) - 1);
 
             $palabrasUsadas = palabraUtilizadaPorJugador($estructurasPalabras, $numPartida, $jugadorSolicitado, $estructuraPartidas);
-            if ($palabrasUsadas){
+            if ($palabrasUsadas) {
                 echo "Esta palabra ya ha sido utilizada. Por favor, elige otra. \n";
             } else {
 
-            // Agregar el número de palabra a las palabras jugadas por el jugador
-            $palabrasJugadas[] = $numPartida;
+                // Agregar el número de palabra a las palabras jugadas por el jugador
+                $palabrasJugadas[] = $numPartida;
 
-            // Iniciar partida de Wordix con la palabra seleccionada
-            $partida = jugarWordix($estructurasPalabras[$numPartida], $jugadorSolicitado);
-
+                // Iniciar partida de Wordix con la palabra seleccionada
+                $partida = jugarWordix($estructurasPalabras[$numPartida], $jugadorSolicitado);
             }
 
             break;
-        case 2: 
+        case 2:
             $jugadorSolicitado = solicitarJugador();
             $palabras = count($estructurasPalabras);
-            $palabrasJugadas=[];
-        
+            $palabrasJugadas = [];
+
             // Obtener una palabra aleatoria que no haya sido jugada por el jugador
             do {
                 $palabraAleatoria = rand(0, $palabras - 1);
-        
+
                 // Verificar si la palabra aleatoria ya ha sido jugada
                 $encontrado = false;
                 foreach ($palabrasJugadas as $palabraJugada) {
@@ -379,11 +388,11 @@ do {
                     }
                 }
             } while ($encontrado);
-                    
+
             $palabrasJugadas[] = $palabraAleatoria;
-                    
+
             $partida = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
-                    
+
             $estructuraPartidas[] = [
                 "palabraWordix" => $estructurasPalabras[$palabraAleatoria],
                 "jugador" => $jugadorSolicitado,
@@ -392,48 +401,47 @@ do {
             ];
 
             break;
-        case 3: 
+        case 3:
             $cantidadPartidas = count($estructuraPartidas);
-            echo "Ingrese un numero de partida entre 0 y ".$cantidadPartidas. ": ";
-            
-            $nroPartida= solicitarNumeroEntre(0,$cantidadPartidas);
-            $visualizarPartida = MostrarPartida($estructuraPartidas,$nroPartida);
-            
+            echo "Ingrese un numero de partida entre 0 y " . $cantidadPartidas . ": ";
+
+            $nroPartida = solicitarNumeroEntre(0, $cantidadPartidas);
+            $visualizarPartida = MostrarPartida($estructuraPartidas, $nroPartida);
+
             break;
         case 4:
-            
-                        $nombreJugadorBusqueda = solicitarJugador();
-                        $partidaGanada1ra = PrimerGanada($estructuraPartidas,$nombreJugadorBusqueda);
-                                                               
-                        if ($partidaGanada1ra==-1){
-                            echo "El jugador " .$nombreJugadorBusqueda. " no ganó ninguna partida. \n";
-                        }elseif ($partidaGanada1ra==-2){
-                            echo "El jugador " .$nombreJugadorBusqueda. " no existe. \n";
-                        }else{
-                            $resumen1raPartidaGanada = MostrarPartida($estructuraPartidas, $partidaGanada1ra);
-                            echo $resumen1raPartidaGanada;                         
 
-                        }
-                    
+            $nombreJugadorBusqueda = solicitarJugador();
+            $partidaGanada1ra = PrimerGanada($estructuraPartidas, $nombreJugadorBusqueda);
+
+            if ($partidaGanada1ra == -1) {
+                echo "El jugador " . $nombreJugadorBusqueda . " no ganó ninguna partida. \n";
+            } elseif ($partidaGanada1ra == -2) {
+                echo "El jugador " . $nombreJugadorBusqueda . " no existe. \n";
+            } else {
+                $resumen1raPartidaGanada = MostrarPartida($estructuraPartidas, $partidaGanada1ra);
+                echo $resumen1raPartidaGanada;
+            }
+
             break;
         case 5:
-           
+
             $nombreJugadorEstadisticas = solicitarJugador();
-            $elResumenJugador= resumenJugador($estructuraPartidas, $nombreJugadorEstadisticas);
-               
-            
-        break;
-        
+            $elResumenJugador = resumenJugador($estructuraPartidas, $nombreJugadorEstadisticas);
+
+
+            break;
+
         case 6:
-            $partidasOrdenadas= mostrarPartidasOrdenadas($estructuraPartidas);
-            
-        
-        break;
+            $partidasOrdenadas = mostrarPartidasOrdenadas($estructuraPartidas);
+
+
+            break;
         case 7:
             $palabraAgregada = leerPalabra5Letras();
             $estructurasPalabras = coleccionPalabrasModificada($estructurasPalabras, $palabraAgregada);
 
-        break;
+            break;
             //...
     }
 } while ($opcion != 8);
