@@ -367,14 +367,32 @@ do {
 
             $jugadorSolicitado = solicitarJugador();
             $palabras = count($estructurasPalabras);
+            $i = 0;
+            $usadas = 0;
+            $nroUsado = false;
 
             // Obtener una palabra aleatoria que no haya sido jugada por el jugador
-            do {
                 $palabraAleatoria = rand(0, $palabras - 1);
-                $palabrasUsadas = palabraUtilizadaPorJugador($palabraAleatoria, $jugadorSolicitado, $estructuraPartidas);
-            } while ($palabrasUsadas);
-
-            $estructuraPartidas[count($estructuraPartidas)] = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
+                $palabraSel = $estructurasPalabras[$palabraAleatoria];
+                while ($i < count($estructuraPartidas)){
+                    if ($palabraSel == $estructuraPartidas[$i]['palabraWordix']){
+                        $nroUsado = true;
+                    } else {
+                        $nroUsado = false;
+                    }
+                    $i++;
+                }
+                if ($nroUsado == false){
+                    $palabrasUsadas = palabraUtilizadaPorJugador($palabraSel, $jugadorSolicitado, $estructuraPartidas);
+                    if ($palabrasUsadas == false){
+                    $estructuraPartidas[count($estructuraPartidas)] = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
+                    $usadas++;
+                    } elseif ($usadas == $palabras){
+                        echo "Lo siento, ya jugó con todas las palabras de Wordix. ";
+                    } else {
+                        echo "Ya jugó con esa palabra, vuelva a seleccionar la opción 2. ";
+                    }
+                }
 
             break;
         case 3:
