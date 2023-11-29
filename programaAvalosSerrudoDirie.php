@@ -396,10 +396,10 @@ do {
 
             break;
         case 3:
-            $cantidadPartidas = count($estructuraPartidas);
-            echo "Ingrese un numero de partida entre 1 y " . $cantidadPartidas . ": ";
+            $cantidadPartidas = count($estructuraPartidas) - 1;
+            echo "Ingrese un numero de partida entre 0 y " . $cantidadPartidas . ": ";
 
-            $nroPartida = solicitarNumeroEntre(1, $cantidadPartidas);
+            $nroPartida = solicitarNumeroEntre(0, $cantidadPartidas);
             $visualizarPartida = MostrarPartida($estructuraPartidas, $nroPartida);
 
             break;
