@@ -318,6 +318,51 @@ function palabraUtilizadaPorJugador($palabraElegida, $jugador, $partidas)
     return $repetida;
 }
 
+/** 9) Función que, tomando una colección de partidas y el nombre de un jugador, retorna el resumen de dicho jugador.
+ * @param array $partidas
+ * @param string $nombreJugador
+ * @return array
+ */
+function resumenJugadorSinEcho($partidas, $nombreJugador)
+{
+
+    $jugadorExiste = false;
+
+    $estadisticasJugador = array(
+        'jugador' => $nombreJugador,
+        'partidas' => 0,
+        'puntaje' => 0,
+        'victorias' => 0,
+        'intentos' => array(
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0
+        )
+    );
+    foreach ($partidas as $partida) {
+        if ($partida['jugador'] == $nombreJugador) {
+            $jugadorExiste = true;
+            $estadisticasJugador['partidas']++;
+            $estadisticasJugador['puntaje'] += $partida['puntaje'];
+
+            if ($partida['puntaje'] > 0) {
+                $estadisticasJugador['victorias']++;
+            }
+
+            // Contar los intentos
+            if ($partida['puntaje'] == 0) {
+                $intentos = 0;
+            } else {
+                $intentos = $partida['intentos'];
+                $estadisticasJugador['intentos'][$intentos]++;
+            }
+        }
+    }
+    return $estadisticasJugador;
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -366,19 +411,17 @@ do {
         case 2:
 
             $jugadorSolicitado = solicitarJugador();
-            $jugador = resumenJugador($estructuraPartidas, $jugadorSolicitado);
-            if ($jugador['partidas'] < count($estructurasPalabras)){
+            $jugador = resumenJugadorSinEcho($estructuraPartidas, $jugadorSolicitado);
+            if ($jugador['partidas'] < count($estructurasPalabras)) {
                 $palabras = count($estructurasPalabras);
 
-            // Obtener una palabra aleatoria que no haya sido jugada por el jugador
-            do {
-                $palabraAleatoria = rand(0, $palabras-1);
-                $palabrasUsadas= palabraUtilizadaPorJugador($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado, $estructuraPartidas);
+                // Obtener una palabra aleatoria que no haya sido jugada por el jugador
+                do {
+                    $palabraAleatoria = rand(0, $palabras - 1);
+                    $palabrasUsadas = palabraUtilizadaPorJugador($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado, $estructuraPartidas);
+                } while ($palabrasUsadas);
 
-            } while ($palabrasUsadas);
-
-            $estructuraPartidas[count($estructuraPartidas)] = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
-
+                $estructuraPartidas[count($estructuraPartidas)] = jugarWordix($estructurasPalabras[$palabraAleatoria], $jugadorSolicitado);
             } else {
                 echo "no le quedan palabras disponibles";
             }
